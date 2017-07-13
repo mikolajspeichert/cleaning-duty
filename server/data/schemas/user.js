@@ -12,7 +12,7 @@ holiday.virtual('start_timestamp')
 
 const user = mongoose.Schema({
   name: String,
-  email: String,
+  email: {type: String, unique: true},
   through_slack: {type: Boolean, default: true},
   holidays: [holiday]
 });

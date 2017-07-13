@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import Header from './components/Header/Header'
+import { Provider } from 'react-redux'
+import configureStore from './configureStore'
+import App from './containers/App/App'
+const store = configureStore()
 
 ReactDOM.render(
-  <Header />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )
