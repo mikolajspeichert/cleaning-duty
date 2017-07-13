@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import settingsBlack from './settings-icon-black.png'
 
 
 class UserTableItem extends Component{
@@ -9,7 +10,7 @@ class UserTableItem extends Component{
       <tr className="user-table-item">
         <td className="item-left">{name}</td>
         <td className="item-right">
-          <img src="settings-icon-black.png" alt="settings"
+          <img src={settingsBlack} alt="settings"
             onClick={()=>onEdit(id)}/>
         </td>
       </tr>
