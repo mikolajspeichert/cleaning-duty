@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import settingsBlack from './settings-icon-black.png'
+import settingsProd from './settings-icon-material.png'
+import styles from './UserTableItem.sass'
 
 
 class UserTableItem extends Component{

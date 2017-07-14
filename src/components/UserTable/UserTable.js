@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import UserTableItem from '../UserTableItem/UserTableItem'
+import style from './UserTable.sass'
 
 class UserTable extends Component{
 

@@ -1,0 +1,30 @@
+@import "../vars"
+
+
+.user-table-item
+  vertical-align: middle
+  height: 7vh
+
+
+
+.user-table-item > td
+  width: 50%
+  border-top: $border-props
+  border-bottom: $border-props
+  padding: 1vh
+
+.user-table-item .item-right img
+  position: relative
+  float: right
+  height: 4vh
+  width: 4vh
+  cursor: pointer
+.user-table-item .item-right img:hover
+  content: url("settings-icon-material.png")
+
+.user-table-item .item-left
+  text-align: left
+  border-left: $border-props
+
+.user-table-item .item-right
+  border-right: $border-props
