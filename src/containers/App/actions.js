@@ -23,12 +23,51 @@ function fetchUsers(){
 
     dispatch(receiveUsers({
       data: [{
-              name: "uwewuwle",
-              id: 5
-            }, {
-              name: "pedal",
-              id: 10
-            }]
+        name: "uwewuwle",
+        id: 1
+      }, {
+        name: "pedal",
+        id: 2
+      }, {
+        name: "uwewuwle",
+        id: 3
+      }, {
+        name: "pedal",
+        id: 4
+      }, {
+        name: "uwewuwle",
+        id: 5
+      }, {
+        name: "pedal",
+        id: 6
+      }, {
+        name: "uwewuwle",
+        id: 7
+      }, {
+        name: "pedal",
+        id: 8
+      }, {
+        name: "uwewuwle",
+        id: 9
+      }, {
+        name: "pedal",
+        id: 10
+      }, {
+        name: "uwewuwle",
+        id: 11
+      }, {
+        name: "pedal",
+        id: 12
+      }, {
+        name: "pedal",
+        id: 13
+      }, {
+        name: "uwewuwle",
+        id: 14
+      }, {
+        name: "pedal",
+        id: 15
+      }]
     }))
   }
 }

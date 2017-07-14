@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {fetchIfNeeded} from './actions'
 import Header from '../../components/Header/Header'
 import UserTable from '../../components/UserTable/UserTable'
+import AddButton from '../../components/AddButton/AddButton'
 
 class App extends Component {
   constructor(props){
@@ -16,6 +17,10 @@ class App extends Component {
     dispatch(fetchIfNeeded())
   }
 
+  handleAdd(){
+    console.log("Add clicked")
+  }
+
   render(){
     const { isFetching, users } = this.props
     return(
@@ -26,7 +31,9 @@ class App extends Component {
       }
       {!isFetching &&
         <UserTable users={users} />
-      }</div>
+      }
+      <AddButton onAdd={this.handleAdd}/>
+      </div>
     )
   }
 }

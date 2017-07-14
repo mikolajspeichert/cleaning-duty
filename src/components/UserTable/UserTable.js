@@ -6,7 +6,7 @@ import style from './UserTable.sass'
 class UserTable extends Component{
 
   handleEdit = (id) => {
-    console.log("[UserTable] handle edit")
+    console.log("[UserTable] handle edit of id: " + id)
   }
 
   render = () => {
