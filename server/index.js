@@ -2,7 +2,6 @@
 
 const express = require('express');
 const logger = require('./logger');
-const manager = require('./data/manager');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/front-middleware');
@@ -32,7 +31,6 @@ app.listen(port, host, (err) => {
   if (err) {
     return logger.error(err.message);
   }
-  manager.test();
   // Connect to ngrok in dev mode
   if (ngrok) {
     ngrok.connect(port, (innerErr, url) => {

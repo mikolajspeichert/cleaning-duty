@@ -13,62 +13,39 @@ function requestUsers(){
 function receiveUsers(json){
   return {
     type: 'RECEIVE_USERS',
-    users: json.data
+    users: json
   }
 }
 
 function fetchUsers(){
   return dispatch => {
     dispatch(requestUsers())
-
-    dispatch(receiveUsers({
-      data: [{
-        name: "uwewuwle",
-        id: 1
-      }, {
-        name: "pedal",
-        id: 2
-      }, {
-        name: "uwewuwle",
-        id: 3
-      }, {
-        name: "pedal",
-        id: 4
-      }, {
-        name: "uwewuwle",
-        id: 5
-      }, {
-        name: "pedal",
-        id: 6
-      }, {
-        name: "uwewuwle",
-        id: 7
-      }, {
-        name: "pedal",
-        id: 8
-      }, {
-        name: "uwewuwle",
-        id: 9
-      }, {
-        name: "pedal",
-        id: 10
-      }, {
-        name: "uwewuwle",
-        id: 11
-      }, {
-        name: "pedal",
-        id: 12
-      }, {
-        name: "pedal",
-        id: 13
-      }, {
-        name: "uwewuwle",
-        id: 14
-      }, {
-        name: "pedal",
-        id: 15
-      }]
-    }))
+    return fetch('http://localhost:3000/users', {method: 'GET'})
+      .then(response => response.json())
+      .then(json => dispatch(receiveUsers(json)))
+    // dispatch(receiveUsers({
+    //   data: [{
+    //     name: "uwewuwle",
+    //     id: 1
+    //   }, {
+    //     name: "pedal",
+    //     id: 2
+    //   }, {
+    //     name: "uwewuwle",
+    //     id: 3
+    //   }, {
+    //     name: "pedal",
+    //     id: 4
+    //   }, {
+    //     name: "uwewuwle",
+    //     id: 5
+    //   }, {
+    //     name: "pedal",
+    //     id: 6
+    //   }, {
+    //     name: "uwewuwle",
+    //     id: 7
+    //   }))
   }
 }
 

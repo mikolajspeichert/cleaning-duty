@@ -3,7 +3,10 @@ import {
   RECEIVE_USERS
 } from './actions'
 
-function usersFetch(state = { isFetching: false, users: []}, action){
+function usersFetch(state = {
+  isFetching: false,
+  users: []
+  }, action){
   switch(action.type){
     case REQUEST_USERS:
       return Object.assign({}, state, {

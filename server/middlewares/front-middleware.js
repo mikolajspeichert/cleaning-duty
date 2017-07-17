@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
+const manager = require('../data/manager');
+
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -30,7 +32,9 @@ const addDevMiddlewares = (app, webpackConfig) => {
       res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
     });
   }
-
+  app.get('/users', (req, res) => {
+    manager.getUsers(res)
+  })
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {

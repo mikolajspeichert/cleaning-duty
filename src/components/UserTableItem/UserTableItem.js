@@ -22,7 +22,7 @@ class UserTableItem extends Component{
 
 UserTableItem.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   onEdit: PropTypes.func.isRequired
 }
 

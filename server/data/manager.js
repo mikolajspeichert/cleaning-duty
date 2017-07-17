@@ -21,3 +21,21 @@ exports.addUser = (name, email, slack = true) => {
                     if(err) console.log("Database failed, error: " + err);
                   })
 }
+
+exports.getUsers = (express) => {
+    models.user.find({}, (err, res) => {
+      if(!err){
+        var result = res.map((user) => {
+          return{
+            id: user._id,
+            name: user.name
+          }
+        })
+        //console.log(result)
+        //express.json(res)
+        express.type('json').json(result)
+      }else{
+        express.send(err)
+      }
+    })
+}

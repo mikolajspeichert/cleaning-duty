@@ -1,0 +1,2 @@
+export const LOCATION_USERS = "LOCATION_USERS"
+export const LOCATION_USER = "LOCATION_USER"

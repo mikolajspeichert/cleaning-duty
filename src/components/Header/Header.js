@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <div className="header-root">
             <h1>Cleaning duty</h1>
-            <Navbar values={["Users", "User", "Duties"]} />
+            <Navbar values={["Users", "Duties"]} />
       </div>
     )
   }
