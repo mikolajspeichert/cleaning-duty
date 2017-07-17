@@ -3,9 +3,6 @@ import styles from './Navbar.sass';
 
 
 class Navbar extends React.Component {
-  handleClick = (value) => {
-    console.log(value + " clicked!");
-  }
 
   render(){
     const vals = this.props.values;
