@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux'
-import {LOCATION_USERS, LOCATION_USER} from '../../locations'
 import {
   REQUEST_USERS,
   RECEIVE_USERS,

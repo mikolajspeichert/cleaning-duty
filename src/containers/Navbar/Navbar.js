@@ -1,30 +1,44 @@
 import { connect } from 'react-redux'
 import { changeLocation } from '../../actions'
-import Navbar from '../../components/NavbarItem/NavbarItem'
-import {LOCATION_USERS, LOCATION_USER} from '../../locations'
+import NavbarItem from '../../components/NavbarItem/NavbarItem'
+import locations from '../../locations'
 
 
-const parseLocations = () => {
-  switch (filter) {
-    case 'SHOW_ALL':
-      return todos
-    case 'SHOW_COMPLETED':
-      return todos.filter(t => t.completed)
-    case 'SHOW_ACTIVE':
-      return todos.filter(t => !t.completed)
+const parseLocation = (loc) => {
+  switch(loc){
+    case locations.LOCATION_DUTIES:
+      return "Duties"
+    case locations.LOCATION_USERS:
+    case locations.LOCATION_USER:
+    default:
+      return "Users"
+  }
+}
+
+const backwardParse = (nav) => {
+  console.log(nav)
+  switch(nav){
+    case "Duties":
+      return locations.LOCATION_DUTIES
+    case "Users":
+    default:
+      return locations.LOCATION_USERS
   }
 }
 
 const mapStateToProps = state => {
+  let navbarItems = ["LOCATION_USERS", "LOCATION_DUTIES"].map((loc) => parseLocation(loc))
+  .filter((elem, pos, arr) => arr.indexOf(elem) == pos)
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    currentLocation: parseLocation(state.location),
+    values: navbarItems
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      dispatch(toggleTodo(id))
+    onLocationClick: location => {
+      dispatch(changeLocation(backwardParse(location)))
     }
   }
 }
@@ -32,4 +46,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navbar)
+)(NavbarItem)

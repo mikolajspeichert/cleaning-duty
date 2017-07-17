@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {changeLocation} from '../../actions'
 import {fetchIfNeeded} from './actions'
-import {LOCATION_USERS, LOCATION_USER} from '../../locations'
+import locations from '../../locations'
 import Header from '../../components/Header/Header'
 import UserTable from '../../components/UserTable/UserTable'
 import AddButton from '../../components/AddButton/AddButton'
@@ -24,7 +24,7 @@ class App extends Component {
     let location = this.props.location
     let content = null
 
-    if(location == LOCATION_USERS){
+    if(location == locations.LOCATION_USERS){
       const { isFetching, items} = this.props.users
       if(isFetching){
         content = <p>Loading...</p>
@@ -40,7 +40,7 @@ class App extends Component {
       <Header />
       {content}
       <AddButton onAdd={()=>{
-        this.props.dispatch(changeLocation(LOCATION_USER))
+        this.props.dispatch(changeLocation(locations.LOCATION_USER))
       }}/>
       </div>
     )
@@ -53,7 +53,7 @@ App.propTypes = {
 
 const mapStateToProps = state => {
   return state || {
-    location: LOCATION_USERS,
+    location: locations.LOCATION_USERS,
     users:{
       isFetching: true,
       items: []

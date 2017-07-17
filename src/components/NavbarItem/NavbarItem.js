@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './Navbar.sass';
+import styles from './NavbarItem.sass';
 
 
-class Navbar extends React.Component {
+class NavbarItem extends React.Component {
 
   render(){
-    const vals = this.props.values;
+    console.log(this.props)
+    const {values, onLocationClick} = this.props;
     return (
-      <div>{vals.map((value) =>
-        <div key={value} className="button-root" onClick={() => this.handleClick(value)}>
+      <div>{values.map((value) =>
+        <div key={value} className="button-root" onClick={onLocationClick}>
           <p>{value}</p>
         </div>)}
       </div>
@@ -16,4 +17,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default NavbarItem;

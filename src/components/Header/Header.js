@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Header.sass'
-import Navbar from '../NavbarItem/NavbarItem'
+import Navbar from '../../containers/Navbar/Navbar'
 
 class Header extends React.Component {
   render() {
