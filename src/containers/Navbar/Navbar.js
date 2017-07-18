@@ -27,7 +27,7 @@ const backwardParse = (nav) => {
 }
 
 const mapStateToProps = state => {
-  let navbarItems = ["LOCATION_USERS", "LOCATION_DUTIES"].map((loc) => parseLocation(loc))
+  let navbarItems = Object.values(locations).map((loc) => parseLocation(loc))
   .filter((elem, pos, arr) => arr.indexOf(elem) == pos)
   return {
     currentLocation: parseLocation(state.location),

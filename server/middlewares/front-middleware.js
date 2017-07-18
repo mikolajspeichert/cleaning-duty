@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser')
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const manager = require('../data/manager');
@@ -21,6 +22,7 @@ const addDevMiddlewares = (app, webpackConfig) => {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+  app.use(bodyParser.json())
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
@@ -32,6 +34,12 @@ const addDevMiddlewares = (app, webpackConfig) => {
       res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
     });
   }
+
+  app.post('/user', (req, res) => {
+      const {name, email, slack} = req.body
+      manager.addUser(name, email, slack)
+      res.send("ok")
+  })
   app.get('/users', (req, res) => {
     manager.getUsers(res)
   })
@@ -42,9 +50,9 @@ const addDevMiddlewares = (app, webpackConfig) => {
       } else {
         res.send(file.toString());
       }
-    });
-  });
-};
+    })
+  })
+}
 
 // Production middlewares
 const addProdMiddlewares = (app, options) => {
@@ -56,6 +64,7 @@ const addProdMiddlewares = (app, options) => {
   // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
+  app.use(bodyParser.json())
 
   app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
 };

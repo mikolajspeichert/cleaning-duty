@@ -1,5 +1,5 @@
 import {users} from './containers/App/reducer'
-import user from './containers/UserPanel/reducer'
+import {user} from './containers/UserPanel/reducer'
 import {combineReducers} from 'redux'
 import locations from './locations'
 import {LOCATION_CHANGE} from './actions'

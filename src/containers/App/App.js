@@ -7,6 +7,7 @@ import locations from '../../locations'
 import Header from '../../components/Header/Header'
 import UserTable from '../../components/UserTable/UserTable'
 import AddButton from '../../components/AddButton/AddButton'
+import UserPanel from '../UserPanel/UserPanel'
 
 class App extends Component {
   constructor(props){
@@ -20,28 +21,26 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.props)
     let location = this.props.location
     let content = null
-
     if(location == locations.LOCATION_USERS){
       const { isFetching, items} = this.props.users
       if(isFetching){
         content = <p>Loading...</p>
       }else{
-        content = <UserTable users={items} />
+        content = [<UserTable users={items} key="table"/>,
+        <AddButton key="addbutton" onAdd={()=>{
+          this.props.dispatch(changeLocation(locations.LOCATION_USER))
+        }}/>]
       }
     }else{
-      content = <p>woo</p>
+      content = <UserPanel />
     }
 
     return(
       <div>
       <Header />
       {content}
-      <AddButton onAdd={()=>{
-        this.props.dispatch(changeLocation(locations.LOCATION_USER))
-      }}/>
       </div>
     )
   }
