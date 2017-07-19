@@ -37,8 +37,7 @@ const addDevMiddlewares = (app, webpackConfig) => {
 
   app.post('/user', (req, res) => {
       const {name, email, slack} = req.body
-      manager.addUser(name, email, slack)
-      res.send("ok")
+      manager.addUser(name, email, slack, res)
   })
   app.get('/users', (req, res) => {
     manager.getUsers(res)

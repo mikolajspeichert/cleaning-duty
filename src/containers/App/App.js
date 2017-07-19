@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {changeLocation} from '../../actions'
 import {fetchIfNeeded} from './actions'
+import {Switch, Route} from 'react-router-dom'
+import { withRouter } from 'react-router'
 import locations from '../../locations'
 import Header from '../../components/Header/Header'
-import UserTable from '../../components/UserTable/UserTable'
-import AddButton from '../../components/AddButton/AddButton'
+import UserTable from '../UserTable/UserTable'
 import UserPanel from '../UserPanel/UserPanel'
 
 class App extends Component {
@@ -29,9 +30,7 @@ class App extends Component {
         content = <p>Loading...</p>
       }else{
         content = [<UserTable users={items} key="table"/>,
-        <AddButton key="addbutton" onAdd={()=>{
-          this.props.dispatch(changeLocation(locations.LOCATION_USER))
-        }}/>]
+        ]
       }
     }else{
       content = <UserPanel />
@@ -40,25 +39,25 @@ class App extends Component {
     return(
       <div>
       <Header />
-      {content}
+      <Switch>
+        <Route exact path="/" component={UserTable}/>
+        <Route path="/user/new" component={UserPanel} />
+      </Switch>
       </div>
     )
   }
 }
 
-App.propTypes = {
-  dispatch: PropTypes.func.isRequired
-}
-
-const mapStateToProps = state => {
-  return state || {
-    location: locations.LOCATION_USERS,
-    users:{
-      isFetching: true,
-      items: []
-    }
-  }
-}
+//
+// const mapStateToProps = state => {
+//   return state || {
+//     location: locations.LOCATION_USERS,
+//     users:{
+//       isFetching: true,
+//       items: []
+//     }
+//   }
+// }
 
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(null)(App))

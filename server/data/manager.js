@@ -15,10 +15,12 @@ exports.test = () => {
   console.log("Testing: ");
 }
 
-exports.addUser = (name, email, slack = true) => {
+exports.addUser = (name, email, slack = true, res) => {
   var user = new models.user({name: name, email: email, through_slack: slack})
                   .save((err) => {
-                    if(err) console.log("Database failed, error: " + err);
+                    if(err) res.status(500).json({
+                      error: err
+                    });
                   })
 }
 

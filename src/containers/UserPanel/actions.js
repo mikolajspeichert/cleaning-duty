@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import {changeLocation} from '../../actions'
+import {fetchIfNeeded} from '../App/actions'
 import locations from '../../locations'
 
 export const FIELD_CHANGED = 'FIELD_CHANGED'
@@ -53,8 +54,16 @@ function post(body){
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body)
-    }).then(response => response.json())
-    .then(json => dispatch(changeLocation(locations.LOCATION_USERS)))
+    }).then(response => {
+      console.log(response.json)
+      if(!response.json().error){
+        dispatch(changeLocation(locations.LOCATION_USERS))
+        dispatch(fetchIfNeeded())
+      }
+    })
+    .then(json => {
+      if(!!json.error)console.error(json.error);
+    })
   }
 }
 

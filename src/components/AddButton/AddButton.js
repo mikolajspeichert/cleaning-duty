@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types'
 import styles from './AddButton.sass'
 
@@ -6,9 +8,9 @@ import styles from './AddButton.sass'
 class AddButton extends Component{
     render(){
       return(
-        <div className="add-button" onClick={this.props.onAdd}>
+        <Link className="add-button" to="/user/new">
           +
-        </div>
+        </Link>
       )
     }
 }

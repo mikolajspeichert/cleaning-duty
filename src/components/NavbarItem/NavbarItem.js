@@ -5,7 +5,6 @@ import styles from './NavbarItem.sass';
 class NavbarItem extends React.Component {
 
   render(){
-    console.log(this.props)
     const {values, onLocationClick} = this.props;
     return (
       <div>{values.map((value) =>
