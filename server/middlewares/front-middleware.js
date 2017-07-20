@@ -39,6 +39,10 @@ const addDevMiddlewares = (app, webpackConfig) => {
       const {name, email, slack} = req.body
       manager.addUser(name, email, slack, res)
   })
+
+  app.get('/user/:id', (req, res) => {
+    manager.getUser(res, req.params.id)
+  })
   app.get('/users', (req, res) => {
     manager.getUsers(res)
   })

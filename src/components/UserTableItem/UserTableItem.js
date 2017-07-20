@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import settingsBlack from './settings-icon-black.png'
 import settingsProd from './settings-icon-material.png'
 import styles from './UserTableItem.sass'
@@ -12,8 +13,9 @@ class UserTableItem extends Component{
       <tr className="user-table-item">
         <td className="item-left">{name}</td>
         <td className="item-right">
-          <img src={settingsBlack} alt="settings"
-            onClick={()=>onEdit(id)}/>
+          <Link to={"/user/" + id}>
+          <img src={settingsBlack} alt="settings" />
+          </Link>
         </td>
       </tr>
     )
@@ -22,8 +24,7 @@ class UserTableItem extends Component{
 
 UserTableItem.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default UserTableItem

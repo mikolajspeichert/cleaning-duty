@@ -1,16 +1,22 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 import styles from './NavbarItem.sass';
 
 
 class NavbarItem extends React.Component {
 
   render(){
-    const {values, onLocationClick} = this.props;
+    const values = this.props.values
+    const keys = Object.keys(values)
     return (
-      <div>{values.map((value) =>
-        <div key={value} className="button-root" onClick={onLocationClick}>
-          <p>{value}</p>
-        </div>)}
+      <div>{keys.map((key) =>
+        <NavLink
+          key={values[key]}
+          className="button-root"
+          to={key}
+          activeClassName="selected">
+          {values[key]}
+        </NavLink>)}
       </div>
     );
   }

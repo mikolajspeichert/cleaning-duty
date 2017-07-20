@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+
 import styles from './UserCredentials.sass'
 
 class UserCredentials extends Component {
+
   render(){
+    console.log(this.props);
     const {credentials, handleChange, error} = this.props
     return(
       <form className="user-credentials">
@@ -13,8 +17,8 @@ class UserCredentials extends Component {
             type="text"
             placeholder="name"
             name="name"
-            defaultValue={credentials.name}
-            onBlur={handleChange}/>
+            value={credentials.name}
+            onChange={handleChange}/>
             {error == "name" && <p className="error">Wrong name!</p>}
         </div>
         <div>
@@ -22,9 +26,9 @@ class UserCredentials extends Component {
             type="email"
             placeholder="e-mail"
             name="email"
-            defaultValue={credentials.email}
-            onBlur={handleChange}
-            required/>
+            value={credentials.email}
+            onChange={handleChange}
+            />
             {error == "email" && <p className="error">Wrong email!</p>}
         </div>
         <div>
@@ -44,6 +48,4 @@ const mapStateToProps = state => {
   return state.user
 }
 
-export default connect(
-  mapStateToProps
-)(UserCredentials)
+export default withRouter(connect(mapStateToProps)(UserCredentials))

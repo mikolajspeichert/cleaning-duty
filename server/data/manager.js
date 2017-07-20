@@ -37,7 +37,27 @@ exports.getUsers = (express) => {
         //express.json(res)
         express.type('json').json(result)
       }else{
-        express.send(err)
+        express.status(500).json({
+          error: err
+        });
       }
     })
+}
+
+exports.getUser = (express, id) => {
+  models.user.findById(id, function (err, user){
+    if(!err){
+      express.type('json').json({
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        holidays: user.holidays,
+        slack: user.through_slack
+      })
+    }else{
+      express.status(500).json({
+        error: err
+      });
+    }
+  })
 }

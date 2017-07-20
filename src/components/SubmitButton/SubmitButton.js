@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import styles from './SubmitButton.sass'
-
-import locations from '../../locations'
-
 
 class SubmitButton extends Component{
     render(){
       const {value, onSubmit} = this.props
       return(
-        <div className="user-submit" onClick={onSubmit}>
+        <Link className="user-submit" to="/" onClick={onSubmit}>
           {value}
-        </div>
+        </Link>
       )
     }
 }
 
 const mapStateToProps = state => {
-  let buttonTitle = state.user.type == locations.user.ADD_USER ? "ADD" : "SAVE"
+  let buttonTitle = "ADD"
   return{
     value: buttonTitle
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps
-)(SubmitButton)
+)(SubmitButton))

@@ -2,7 +2,6 @@ import {combineReducers} from 'redux'
 import {
   REQUEST_USERS,
   RECEIVE_USERS,
-  LOCATION_CHANGE
 } from './actions'
 
 

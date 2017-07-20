@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import {fetchIfNeeded} from '../App/actions'
 import UserTableItem from '../../components/UserTableItem/UserTableItem'
 import AddButton from '../../components/AddButton/AddButton'
-//import style from './UserTable.sass'
+import style from './UserTable.sass'
 
 class UserTable extends Component{
-
-  handleEdit = (id) => {
-    console.log("[UserTable] handle edit of id: " + id)
+  componentWillMount(){
+    const dispatch = this.props.dispatch
+    dispatch(fetchIfNeeded())
   }
 
   render = () => {
     const users = this.props.users;
     return (
-      <div>
+      <div className="user-table">
         <table>
           <tbody>
             {users.map((user)=>
-              <UserTableItem key={user.id} name={user.name} id={user.id} onEdit={this.handleEdit} />
+              <UserTableItem key={user.id} name={user.name} id={user.id}/>
             )}
           </tbody>
         </table>
@@ -34,6 +35,5 @@ const mapStateToProps = state =>{
     users: state.users.items
   }
 }
-
 
 export default withRouter(connect(mapStateToProps)(UserTable));

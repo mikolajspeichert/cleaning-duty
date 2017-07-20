@@ -1,30 +1,30 @@
 import {
     WRONG_FIELD,
     USER_SENT,
-    FIELD_CHANGED
+    FIELD_CHANGED,
+    USER_RECEIVED,
+    RESET
 } from './actions'
-import locations from '../../locations'
 
 var initialState = {
-  type: locations.user.ADD_USER,
   credentials: {
     name: '',
     email: '',
-    slack: true
+    slack: true,
+    holidays: []
   },
   error: ''
 }
 
-function credentials(state = {
-  name: '',
-  email: '',
-  slack: true
-}, action){
-  if(action.type == FIELD_CHANGED){
+function credentials(state = initialState.credentials, action){
+  switch (action.type) {
+    case FIELD_CHANGED:
     return Object.assign({}, state, {
       [action.name]: action.value
     })
-  }else return state
+    default:
+      return state
+  }
 }
 
 export function user(state = initialState, action){
@@ -43,6 +43,13 @@ export function user(state = initialState, action){
         error: ''
       })
     }
+    case USER_RECEIVED:{
+      return Object.assign({}, state, {
+        credentials: action.data
+      })
+    }
+    case RESET:
+      return initialState
     default:
       return state
   }

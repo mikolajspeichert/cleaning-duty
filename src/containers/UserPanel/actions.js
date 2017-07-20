@@ -1,21 +1,21 @@
 import fetch from 'isomorphic-fetch'
-import {changeLocation} from '../../actions'
 import {fetchIfNeeded} from '../App/actions'
-import locations from '../../locations'
 
 export const FIELD_CHANGED = 'FIELD_CHANGED'
 export const WRONG_FIELD = 'WRONG_FIELD'
 export const USER_SENT = 'USER_SENT'
+export const USER_RECEIVED = 'USER_RECEIVED'
+export const RESET = 'RESET'
 
 
 var validate = (name, value) => {
   switch(name){
     case "name":
       if(value == '') return wrongField("name")
-      break
-    case "email":
-      if(!/\S+@\S+\.\S+/.test(value)) return wrongField("email")
-      break
+  //  case "email":
+  ////    if(!/\S+@\S+\.\S+/.test(value)) return {
+  //      wrongField("email")
+
     default: return true
   }
   return true
@@ -45,6 +45,19 @@ function userSent(success){
   }
 }
 
+function userReceived(json){
+  return{
+    type: 'USER_RECEIVED',
+    data: json
+  }
+}
+
+export function reset(){
+  return{
+    type: 'RESET'
+  }
+}
+
 function post(body){
   return dispatch => {
     return fetch('http://localhost:3000/user', {
@@ -55,15 +68,26 @@ function post(body){
       },
       body: JSON.stringify(body)
     }).then(response => {
-      console.log(response.json)
-      if(!response.json().error){
-        dispatch(changeLocation(locations.LOCATION_USERS))
-        dispatch(fetchIfNeeded())
+      if(!!response.json().error){
+        console.error(response.json().error)
       }
     })
-    .then(json => {
-      if(!!json.error)console.error(json.error);
-    })
+  }
+}
+
+function fetchUser(id){
+  return dispatch => {
+    return fetch('http://localhost:3000/user/' + id, {}).then(
+      response => {
+        return response.json()}
+      ).then(json => {
+        return dispatch(userReceived(json))})
+  }
+}
+
+export function getUser(id){
+  return (dispatch, getState) => {
+    return dispatch(fetchUser(id))
   }
 }
 

@@ -22,29 +22,6 @@ function fetchUsers(){
     return fetch('http://localhost:3000/users', {method: 'GET'})
       .then(response => response.json())
       .then(json => dispatch(receiveUsers(json)))
-    // dispatch(receiveUsers({
-    //   data: [{
-    //     name: "uwewuwle",
-    //     id: 1
-    //   }, {
-    //     name: "pedal",
-    //     id: 2
-    //   }, {
-    //     name: "uwewuwle",
-    //     id: 3
-    //   }, {
-    //     name: "pedal",
-    //     id: 4
-    //   }, {
-    //     name: "uwewuwle",
-    //     id: 5
-    //   }, {
-    //     name: "pedal",
-    //     id: 6
-    //   }, {
-    //     name: "uwewuwle",
-    //     id: 7
-    //   }))
   }
 }
 

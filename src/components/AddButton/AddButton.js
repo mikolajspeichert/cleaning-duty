@@ -8,7 +8,7 @@ import styles from './AddButton.sass'
 class AddButton extends Component{
     render(){
       return(
-        <Link className="add-button" to="/user/new">
+        <Link className="add-button" to="/user">
           +
         </Link>
       )
