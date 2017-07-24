@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const manager = require('../data/manager');
-
+const dispense = require('../cron-logic/dispense')
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -35,17 +35,77 @@ const addDevMiddlewares = (app, webpackConfig) => {
     });
   }
 
-  app.post('/user', (req, res) => {
+  //*************************************************
+  // All backend logic made by me is here, not much to do
+  // All database logic is in data package
+  // Database: MongoDB, framework: Mongoose.js
+  // Rest is taken from react-boilerplate
+  // I've slightly edited the webpack config
+  app.post('/api/user', (req, res) => {
       const {name, email, slack} = req.body
       manager.addUser(name, email, slack, res)
   })
 
-  app.get('/user/:id', (req, res) => {
-    manager.getUser(res, req.params.id)
+
+  app.post('/api/duties', (req, res) => {
+    const {id, update} = req.body
+    manager.updateDuty(id, update, res)
   })
-  app.get('/users', (req, res) => {
-    manager.getUsers(res)
+
+
+  app.get('/api/user/:id', (req, res) => {
+    manager.getUser(req.params.id).exec((err, user)=>{
+      if(!err){
+        res.type('json').json({
+          id: user._id,
+          email: user.email,
+          name: user.name,
+          holidays: user.holidays,
+          slack: user.through_slack
+        })
+      }else{
+        manager.generateError(res, "GET_USER", err)
+      }
+    })
   })
+
+
+  app.get('/api/users', (req, res) => {
+    manager.getUsers().exec((err, result) => {
+      if(!err){
+        res.type('json').json(result.map((user) => {
+          return{
+            id: user._id,
+            name: user.name
+          }
+        }))
+      }else{
+        manager.generateError(res, "GET_USERS", err)
+      }
+    })
+  })
+
+
+  app.get('/api/duties', (req, res) => {
+    manager.getDuties().exec((err, result) => {
+      if(!err){
+        res.type('json').json(result.map((duty) =>{
+          return{
+            id: duty._id,
+            name: duty.name,
+            frequency: duty.frequency
+          }
+        }))
+      }else{
+        manager.generateError(res, "GET_DUTIES", err)
+      }
+    })
+  })
+
+  app.get('/api/noszkurwa', (req, res) => {
+    dispense()
+  })
+
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
@@ -77,7 +137,6 @@ const addProdMiddlewares = (app, options) => {
  */
 module.exports = (app, options) => {
   const isProd = process.env.NODE_ENV === 'production';
-
   if (isProd) {
     addProdMiddlewares(app, options);
   } else {

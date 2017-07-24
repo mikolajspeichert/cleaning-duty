@@ -6,6 +6,7 @@ import {
     RESET
 } from './actions'
 
+// Initial state contains no user data
 var initialState = {
   credentials: {
     name: '',
@@ -16,6 +17,7 @@ var initialState = {
   error: ''
 }
 
+// Function modifying credentials state
 function credentials(state = initialState.credentials, action){
   switch (action.type) {
     case FIELD_CHANGED:
@@ -27,6 +29,13 @@ function credentials(state = initialState.credentials, action){
   }
 }
 
+// Reducer for UserPanel
+// Handles actions:
+//  USER_SENT means user data has been sent to server
+//  WRONG_FIELD means failed form valdiation
+//  FIELD_CHANGED means changed form data
+//  USER_RECEIVED means user data has been received from the server
+//  RESET means current state will be replaced with initial state
 export function user(state = initialState, action){
   switch(action.type){
     case USER_SENT:{

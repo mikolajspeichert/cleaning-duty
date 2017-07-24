@@ -11,53 +11,59 @@ mongoose.connect('mongodb://localhost/cleaning_duty');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Failed to connect to db'));
 
-exports.test = () => {
-  console.log("Testing: ");
-}
-
-exports.addUser = (name, email, slack = true, res) => {
-  var user = new models.user({name: name, email: email, through_slack: slack})
-                  .save((err) => {
-                    if(err) res.status(500).json({
-                      error: err
-                    });
-                  })
-}
-
-exports.getUsers = (express) => {
-    models.user.find({}, (err, res) => {
-      if(!err){
-        var result = res.map((user) => {
-          return{
-            id: user._id,
-            name: user.name
-          }
-        })
-        //console.log(result)
-        //express.json(res)
-        express.type('json').json(result)
-      }else{
-        express.status(500).json({
-          error: err
-        });
-      }
-    })
-}
-
-exports.getUser = (express, id) => {
-  models.user.findById(id, function (err, user){
-    if(!err){
-      express.type('json').json({
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        holidays: user.holidays,
-        slack: user.through_slack
-      })
-    }else{
-      express.status(500).json({
-        error: err
-      });
-    }
+exports.generateError = (express, tag, error) => {
+  express.status(500).type('json').json({
+    from: tag,
+    message: error
   })
+}
+
+exports.addUser = (name, email, slack = true, express) => {
+  new models.user({
+    name: name,
+    email: email,
+    through_slack: slack,
+    created: new Date()
+  }).save((err) => {
+    if(err) generateError(express, "ADD_USER", err)
+  })
+}
+
+exports.addDuty = (name, frequency = 0, express) => {
+  new models.duty({
+    name: name,
+    frequency: frequency
+  }).save((err) => {
+    if(err) generateError(express, "ADD_DUTY", err)
+  })
+}
+
+exports.addHistory = (user, duty, date) => {
+  new models.history({
+    user_id: user,
+    duty_id: duty,
+    date: date
+  }).save((err)=>{})
+}
+
+exports.getUsers = () => {
+    return models.user.find({}).exec()
+}
+
+exports.getUser = (id) => {
+  return models.user.findById(id).exec()
+}
+
+exports.getDuties = () => {
+  return models.duty.find({})
+}
+
+exports.updateDuty = (id, update, express) => {
+  models.duty.findOneAndUpdate({ "_id": id }, update, (err) => {
+    if(err) generateError(express, "UPDATE_DUTY", err)
+  })
+}
+
+exports.getHistoryOfUser = (id) => {
+  return models.history.find({user_id: id})
 }

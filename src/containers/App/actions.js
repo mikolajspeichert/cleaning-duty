@@ -1,14 +1,17 @@
 import fetch from 'isomorphic-fetch'
-
+import {USERS} from '../../apilinks'
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 
+// Action dispatched when fetching has begun
 function requestUsers(){
   return {
     type: 'REQUEST_USERS'
   }
 }
 
+// Action dispatched when fetching is finished.
+// There is no error handling in this version
 function receiveUsers(json){
   return {
     type: 'RECEIVE_USERS',
@@ -16,15 +19,18 @@ function receiveUsers(json){
   }
 }
 
+// Async action fetching json data and dispatching it
+// so components can update
 function fetchUsers(){
   return dispatch => {
     dispatch(requestUsers())
-    return fetch('http://localhost:3000/users', {method: 'GET'})
+    return fetch(USERS, {method: 'GET'})
       .then(response => response.json())
       .then(json => dispatch(receiveUsers(json)))
   }
 }
 
+// Thunk middleware magic
 export function fetchIfNeeded(){
   return (dispatch, getState) => {
     if (!getState().isFetching){

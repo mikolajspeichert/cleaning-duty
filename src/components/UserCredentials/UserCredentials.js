@@ -5,6 +5,9 @@ import { withRouter } from 'react-router'
 
 import styles from './UserCredentials.sass'
 
+
+// Semi-smart component, if mapping state to props was made in UserPanel
+// it didn't work, so I've placed it here
 class UserCredentials extends Component {
 
   render(){

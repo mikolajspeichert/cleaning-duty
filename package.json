@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "repository": "https://github.com/mikolajspeichert/cleaning_duty.git",
   "dependencies": {
+    "async": "^2.5.0",
     "babel-loader": "^7.1.1",
     "babel-preset-react-hmre": "^1.1.1",
     "body-parser": "^1.17.2",

@@ -14,6 +14,7 @@ const user = mongoose.Schema({
   name: String,
   email: {type: String, unique: true},
   through_slack: {type: Boolean, default: true},
+  created: Date,
   holidays: [holiday]
 });
 

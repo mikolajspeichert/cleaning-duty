@@ -7,7 +7,11 @@ import { withRouter } from 'react-router'
 import Header from '../../components/Header/Header'
 import UserTable from '../UserTable/UserTable'
 import UserPanel from '../UserPanel/UserPanel'
+import DutyTable from '../DutyTable/DutyTable'
 
+// Main container
+// Routing created with react-router
+// By default app is showing the UserTable container
 class App extends Component {
   componentDidMount() {
     const dispatch = this.props.dispatch
@@ -22,6 +26,7 @@ class App extends Component {
         <Route exact path="/" component={UserTable}/>
         <Route path="/user/:id" component={UserPanel} />
         <Route path="/user" component={UserPanel} />
+        <Route path="/duties" component={DutyTable} />
       </Switch>
       </div>
     )

@@ -7,6 +7,9 @@ import UserTableItem from '../../components/UserTableItem/UserTableItem'
 import AddButton from '../../components/AddButton/AddButton'
 import style from './UserTable.sass'
 
+// Table of users container
+// On every showup is updated
+// It isn't a lot of data, so there is no need for optimisation
 class UserTable extends Component{
   componentWillMount(){
     const dispatch = this.props.dispatch
@@ -16,7 +19,7 @@ class UserTable extends Component{
   render = () => {
     const users = this.props.users;
     return (
-      <div className="user-table">
+      <div>
         <table>
           <tbody>
             {users.map((user)=>

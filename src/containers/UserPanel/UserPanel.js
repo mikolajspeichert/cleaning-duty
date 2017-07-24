@@ -6,19 +6,19 @@ import {postUser, wrongField, fieldChanged, reset, getUser} from './actions'
 import UserCredentials from '../../components/UserCredentials/UserCredentials'
 import SubmitButton from '../../components/SubmitButton/SubmitButton'
 
-
+// User panel container
+// If no match parameters given, it works as an 'add new user'
+// If a match parameter id is present, works as an 'edit user'
 class UserPanel extends Component{
 
+  //checking match params
   componentWillMount(){
     if(!!this.props.match.params.id){
       this.props.handleShowup(this.props.match.params.id)
     }
   }
 
-  componentDidMount(){
-    this.forceUpdate()
-  }
-
+  // resets on leave
   componentWillUnmount(){
     this.props.handleLeave()
   }
