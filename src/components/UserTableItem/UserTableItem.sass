@@ -5,14 +5,15 @@
   vertical-align: middle
   height: 2.7em
 
-.user-table-item > td
-  width: 50%
-  border-top: $border-props
-  border-bottom: $border-props
+.user-table-item .item
+  text-align: left
   padding: 0.5em
-  font-family: $header-font
+  font: 2em $header-font
 
-.user-table-item .item-right img
+.user-table-item .item:hover
+  background-color: rgb(216, 216, 216)
+
+.user-table-item .item img
   -webkit-touch-callout: none
   -webkit-user-select: none
   -khtml-user-select: none
@@ -25,12 +26,5 @@
   width: 1.5em
   cursor: pointer
 
-.user-table-item .item-right img:hover
+.user-table-item .item img:hover
   content: url("settings-icon-material.png")
-
-.user-table-item .item-left
-  text-align: left
-  border-left: $border-props
-
-.user-table-item .item-right
-  border-right: $border-props

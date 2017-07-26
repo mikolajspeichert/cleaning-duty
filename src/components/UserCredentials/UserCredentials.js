@@ -36,11 +36,12 @@ class UserCredentials extends Component {
         </div>
         <div>
           <input
-            type="checkbox"
-            //onChange={handleChange}
-            disabled
-            checked/>
-          <p>Through slack?</p>
+            type="text"
+            placeholder="slack nickname"
+            name="slack"
+            value={credentials.slack}
+            onChange={handleChange}
+            />
         </div>
       </form>
     )

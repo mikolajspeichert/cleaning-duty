@@ -18,11 +18,11 @@ exports.generateError = (express, tag, error) => {
   })
 }
 
-exports.addUser = (name, email, slack = true, express) => {
+exports.addUser = (name, email, slack, express) => {
   new models.user({
     name: name,
     email: email,
-    through_slack: slack,
+    slack: slack,
     created: new Date()
   }).save((err) => {
     if(err) generateError(express, "ADD_USER", err)
@@ -55,7 +55,7 @@ exports.getUser = (id) => {
 }
 
 exports.getDuties = () => {
-  return models.duty.find({})
+  return models.duty.find({}).exec()
 }
 
 exports.updateDuty = (id, update, express) => {
@@ -64,6 +64,6 @@ exports.updateDuty = (id, update, express) => {
   })
 }
 
-exports.getHistoryOfUser = (id) => {
-  return models.history.find({user_id: id})
+exports.getHistory = () => {
+  return models.history.find({}).exec()
 }

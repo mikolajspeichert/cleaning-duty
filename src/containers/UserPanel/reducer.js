@@ -11,7 +11,7 @@ var initialState = {
   credentials: {
     name: '',
     email: '',
-    slack: true,
+    slack: '',
     holidays: []
   },
   error: ''

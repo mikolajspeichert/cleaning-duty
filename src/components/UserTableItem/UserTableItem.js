@@ -11,8 +11,8 @@ class UserTableItem extends Component{
     const { name, id, onEdit } = this.props
     return(
       <tr className="user-table-item">
-        <td className="item-left">{name}</td>
-        <td className="item-right">
+        <td className="item">
+          {name}
           <Link to={"/user/" + id}>
           <img src={settingsBlack} alt="settings" />
           </Link>

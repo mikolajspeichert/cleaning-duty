@@ -6,6 +6,7 @@ const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const manager = require('../data/manager');
 const dispense = require('../cron-logic/dispense')
+const CronJob = require('cron').CronJob
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -27,6 +28,9 @@ const addDevMiddlewares = (app, webpackConfig) => {
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
+  new CronJob('00 00 09 * * 1-5', () => {
+    dispense()
+  }, null, true, 'Europe/Warsaw')
 
   if (pkg.dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
@@ -52,59 +56,58 @@ const addDevMiddlewares = (app, webpackConfig) => {
     manager.updateDuty(id, update, res)
   })
 
+  app.get('/api/dispense', (req, res) => dispense())
 
   app.get('/api/user/:id', (req, res) => {
-    manager.getUser(req.params.id).exec((err, user)=>{
-      if(!err){
-        res.type('json').json({
-          id: user._id,
-          email: user.email,
-          name: user.name,
-          holidays: user.holidays,
-          slack: user.through_slack
-        })
-      }else{
-        manager.generateError(res, "GET_USER", err)
-      }
+    manager.getUser(req.params.id).then((user)=>{
+      //    if(!err){
+      res.type('json').json({
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        holidays: user.holidays,
+        slack: user.slack
+      })
+      //      }else{
+      //      manager.generateError(res, "GET_USER", err)
+      //      }
     })
   })
 
 
   app.get('/api/users', (req, res) => {
-    manager.getUsers().exec((err, result) => {
-      if(!err){
-        res.type('json').json(result.map((user) => {
-          return{
-            id: user._id,
-            name: user.name
-          }
-        }))
-      }else{
-        manager.generateError(res, "GET_USERS", err)
-      }
+    manager.getUsers().then((result) => {
+      //if(!err){
+      res.type('json').json(result.map((user) => {
+        return{
+          id: user._id,
+          name: user.name
+        }
+      }))
+      //  }else{
+      //    manager.generateError(res, "GET_USERS", err)
+      //  }
     })
   })
 
 
   app.get('/api/duties', (req, res) => {
-    manager.getDuties().exec((err, result) => {
-      if(!err){
-        res.type('json').json(result.map((duty) =>{
-          return{
-            id: duty._id,
-            name: duty.name,
-            frequency: duty.frequency
-          }
-        }))
-      }else{
-        manager.generateError(res, "GET_DUTIES", err)
-      }
+    manager.getDuties().then((result) => {
+      //    if(!err){
+      res.type('json').json(result.map((duty) =>{
+        return{
+          id: duty._id,
+          name: duty.name,
+          frequency: duty.frequency
+        }
+      }))
+      //    }else{
+      //      manager.generateError(res, "GET_DUTIES", err)
+      //      }
     })
   })
 
-  app.get('/api/noszkurwa', (req, res) => {
-    dispense()
-  })
+
 
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
