@@ -30,11 +30,37 @@ function fetchUsers(){
   }
 }
 
+function remove(id){
+  return dispatch => {
+    return fetch(USERS + '/remove', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id
+      })
+    }).then(response => {
+      dispatch(fetchIfNeeded())
+      if(!!response.json().error){
+        console.error(response.json().error)
+      }
+    })
+  }
+}
+
 // Thunk middleware magic
 export function fetchIfNeeded(){
   return (dispatch, getState) => {
     if (!getState().isFetching){
       return dispatch(fetchUsers())
     }
+  }
+}
+
+export function removeUser(id){
+  return (dispatch, getState) => {
+    return dispatch(remove(id))
   }
 }

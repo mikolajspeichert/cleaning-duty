@@ -1,5 +1,8 @@
 @import "../vars"
 
+.duty-table-item .item:not(.new):hover
+  background-color: #fafafa
+
 .duty-table-item .item p
   position: relative
   float: left
@@ -7,3 +10,23 @@
 .duty-table-item .item div
   position: relative
   float: right
+
+.duty-table-item .item:not(.new):hover img
+  display: inline
+
+.duty-table-item .item img
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  position: relative
+  float: right
+  height: 1.5em
+  width: 1.5em
+  cursor: pointer
+  display: none
+
+.duty-table-item .item>img:hover
+  content: url("remove-icon-red.png")

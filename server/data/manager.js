@@ -11,13 +11,13 @@ mongoose.connect('mongodb://localhost/cleaning_duty');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Failed to connect to db'));
 
-exports.generateError = (express, tag, error) => {
+generateError = (express, tag, error) => {
   express.status(500).type('json').json({
     from: tag,
     message: error
   })
 }
-
+exports.generateError = generateError
 exports.addUser = (name, email, slack, express) => {
   new models.user({
     name: name,
@@ -29,12 +29,27 @@ exports.addUser = (name, email, slack, express) => {
   })
 }
 
+exports.removeUser = (id, express) => {
+  models.user.findOneAndRemove({"_id":id}, (err)=> {
+    if(err) generateError(express, "REMOVE_USER", err)
+    else express.status(200).send("ok")
+  })
+}
+
 exports.addDuty = (name, frequency = 0, express) => {
   new models.duty({
     name: name,
     frequency: frequency
   }).save((err) => {
     if(err) generateError(express, "ADD_DUTY", err)
+    else express.status(200).send("ok")
+  })
+}
+
+exports.removeDuty = (id, express) => {
+  models.duty.findOneAndRemove({"_id":id}, (err) => {
+    if(err) generateError(express, "REMOVE_DUTY", err)
+    else express.status(200).send("ok")
   })
 }
 

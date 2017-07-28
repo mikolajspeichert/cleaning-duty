@@ -50,10 +50,24 @@ const addDevMiddlewares = (app, webpackConfig) => {
       manager.addUser(name, email, slack, res)
   })
 
+  app.post('/api/users/remove', (req, res) => {
+    const id = req.body.id
+    manager.removeUser(id, res)
+  })
+
+  app.post('/api/duty', (req, res) => {
+    const name = req.body.name
+    manager.addDuty(name, 0, res)
+  })
 
   app.post('/api/duties', (req, res) => {
     const {id, update} = req.body
     manager.updateDuty(id, update, res)
+  })
+
+  app.post('/api/duties/remove', (req, res) => {
+    const id = req.body.id
+    manager.removeDuty(id, res)
   })
 
   app.get('/api/dispense', (req, res) => dispense())

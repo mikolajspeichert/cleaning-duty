@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import {DUTIES} from '../../apilinks'
+import {DUTIES, DUTY} from '../../apilinks'
 import utils from '../../utils/dutycoding'
 export const RECEIVE_DUTIES = 'RECEIVE_DUTIES'
 export const UPDATE_DUTIES = 'UPDATE_DUTIES'
@@ -34,7 +34,7 @@ export function getDuties(){
   }
 }
 
-function post(id, frequency){
+function update(id, frequency){
   return dispatch => {
     dispatch(updateDuty(id, frequency))
     return fetch(DUTIES, {
@@ -57,6 +57,47 @@ function post(id, frequency){
   }
 }
 
+function remove(id){
+  return dispatch => {
+    return fetch(DUTIES + '/remove', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id
+      })
+    }).then(response => {
+      dispatch(getDuties())
+      if(!!response.json().error){
+        console.error(response.json().error)
+      }
+    })
+  }
+}
+
+function post(name){
+  console.log("posting")
+  return dispatch => {
+    return fetch(DUTY, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name
+      })
+    }).then(response => {
+      dispatch(getDuties())
+      if(!!response.json().error){
+        console.error(response.json().error)
+      }
+    })
+  }
+}
+
 export function updateDuties(id, day, value){
   return (dispatch, getState) => {
     let duty = Object.assign({}, getState().duties.find((element) => {
@@ -69,6 +110,18 @@ export function updateDuties(id, day, value){
     }else{
       duty.frequency = duty.frequency & ~bit
     }
-    return(dispatch(post(id, duty.frequency)))
+    return(dispatch(update(id, duty.frequency)))
+  }
+}
+
+export function postDuty(name){
+  return (dispatch, getState) => {
+    return dispatch(post(name))
+  }
+}
+
+export function removeDuty(id){
+  return (dispatch, getState) => {
+    return dispatch(remove(id))
   }
 }

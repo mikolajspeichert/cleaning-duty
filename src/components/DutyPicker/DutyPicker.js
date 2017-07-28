@@ -4,10 +4,14 @@ import styles from './DutyPicker.sass'
 
 class DutyPicker extends Component{
   render = () => {
-    const {days, handlePick } = this.props
+    if(!!this.props.days) var {days, handlePick } = this.props
+    else {
+      var days = [0,0,0,0,0]
+      var handlePick = () => {}
+    }
     const values = ["Mon", "Tue", "Wed", "Thu", "Fri"]
     return(
-      <div className="picker-wrapper">
+      <div className={!!this.props.days ? "picker-wrapper" : "picker-wrapper transparentish"}>
         {days.map((value, key) =>{
           let css = value ? "picker-item selected" : "picker-item"
           return <div className={css} key={key} onClick={() => handlePick(key, value)} >

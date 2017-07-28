@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { getDuties, updateDuties } from './actions'
+import { getDuties, updateDuties, postDuty, removeDuty} from './actions'
 import utils from '../../utils/dutycoding'
 import DutyTableItem from '../../components/DutyTableItem/DutyTableItem'
-
+import AddDuty from '../../components/AddDuty/AddDuty'
 class DutyTable extends Component{
 
   componentWillMount = () => {
     this.props.dispatch(getDuties())
+  }
+
+  handleAdd = (name) => {
+    this.props.dispatch(postDuty(name))
   }
 
   render = () => {
@@ -23,12 +27,15 @@ class DutyTable extends Component{
                 <DutyTableItem
                   duty={duty}
                   key={duty.id}
-                  handleEdit={(day, value)=>{
+                  onEdit={(day, value)=>{
                     dispatch(updateDuties(duty.id, day, value))
-                  }
-                  } />
+                  }}
+                  onRemove={(id) => {
+                    dispatch(removeDuty(id))
+                  }}/>
               )
             }
+            <AddDuty onAdd={this.handleAdd}/>
           </tbody>
         </table>
       </div>

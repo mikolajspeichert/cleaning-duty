@@ -3,15 +3,22 @@
 
 .user-table-item
   vertical-align: middle
-  height: 2.7em
 
 .user-table-item .item
+  height: 2em
   text-align: left
   padding: 0.5em
   font: 2em $header-font
 
+
 .user-table-item .item:hover
-  background-color: rgb(216, 216, 216)
+  background-color: #fafafa
+
+.user-table-item .item>img.hovered
+  display: inline
+
+.user-table-item .item>img
+  display: none
 
 .user-table-item .item img
   -webkit-touch-callout: none
@@ -26,5 +33,7 @@
   width: 1.5em
   cursor: pointer
 
-.user-table-item .item img:hover
+.user-table-item .item>img:hover
+  content: url("remove-icon-red.png")
+.user-table-item .item .edit:hover
   content: url("settings-icon-material.png")
