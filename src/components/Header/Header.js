@@ -2,7 +2,7 @@ import React from 'react'
 import style from './Header.sass'
 import Navbar from '../../containers/Navbar/Navbar'
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   render() {
     return (
       <div className="header-root">
@@ -12,4 +12,4 @@ class Header extends React.Component {
     )
   }
 }
-export default Header;
+export default Header

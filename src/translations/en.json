@@ -1,0 +1,14 @@
+{
+  "cleaningduty.components.AddDuty.placeholder": "Add new...",
+  "cleaningduty.containers.Navbar.Headers":{
+    "users":"Users",
+    "duties":"Duties"
+  },
+  "cleaningduty.components.DutyPicker.days":{
+    "mon":"Mon",
+    "tue":"Tue",
+    "wed":"Wed",
+    "thu":"Thu",
+    "fri":"Fri"
+  }
+}

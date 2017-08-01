@@ -1,66 +1,66 @@
-import fetch from 'isomorphic-fetch'
-import {USERS} from '../../apilinks'
-export const REQUEST_USERS = 'REQUEST_USERS'
-export const RECEIVE_USERS = 'RECEIVE_USERS'
+import fetch from "isomorphic-fetch";
+import { USERS } from "../../apilinks";
+export const REQUEST_USERS = "REQUEST_USERS";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 
 // Action dispatched when fetching has begun
-function requestUsers(){
+function requestUsers() {
   return {
-    type: 'REQUEST_USERS'
-  }
+    type: "REQUEST_USERS"
+  };
 }
 
 // Action dispatched when fetching is finished.
 // There is no error handling in this version
-function receiveUsers(json){
+function receiveUsers(json) {
   return {
-    type: 'RECEIVE_USERS',
+    type: "RECEIVE_USERS",
     users: json
-  }
+  };
 }
 
 // Async action fetching json data and dispatching it
 // so components can update
-function fetchUsers(){
+function fetchUsers() {
   return dispatch => {
-    dispatch(requestUsers())
-    return fetch(USERS, {method: 'GET'})
+    dispatch(requestUsers());
+    return fetch(USERS, { method: "GET" })
       .then(response => response.json())
-      .then(json => dispatch(receiveUsers(json)))
-  }
+      .then(json => dispatch(receiveUsers(json)));
+  };
 }
 
-function remove(id){
+function remove(id) {
   return dispatch => {
-    return fetch(USERS + '/remove', {
-      method: 'POST',
+    return fetch(USERS + "/remove", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         id: id
       })
     }).then(response => {
-      dispatch(fetchIfNeeded())
-      if(!!response.json().error){
-        console.error(response.json().error)
+      dispatch(fetchIfNeeded());
+      if (!!response.json().error) {
+        console.error(response.json().error);
       }
-    })
-  }
+    });
+  };
 }
 
 // Thunk middleware magic
-export function fetchIfNeeded(){
+export function fetchIfNeeded() {
   return (dispatch, getState) => {
-    if (!getState().isFetching){
-      return dispatch(fetchUsers())
+    if (!getState().isFetching) {
+      return dispatch(fetchUsers());
     }
-  }
+  };
 }
 
-export function removeUser(id){
+export function removeUser(id) {
   return (dispatch, getState) => {
-    return dispatch(remove(id))
-  }
+    return dispatch(remove(id));
+  };
 }
