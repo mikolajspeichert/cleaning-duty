@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { postUser, wrongField, fieldChanged, reset, getUser } from "./actions";
 import UserCredentials from "../../components/UserCredentials/UserCredentials";
+import HolidaysTable from "../../components/HolidaysTable/HolidaysTable";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
 // User panel container
@@ -23,14 +24,15 @@ class UserPanel extends Component {
   }
 
   render() {
-    const { match, credentials, handleChange, handleSubmit } = this.props;
-    let value = "ADD"
-    if(match.params.id) {
-      value = "UPDATE"
+    const { match, handleChange, handleSubmit } = this.props;
+    let value = "ADD";
+    if (match.params.id) {
+      value = "UPDATE";
     }
     return (
       <div>
         <UserCredentials handleChange={handleChange} />
+        {match.params.id && <HolidaysTable />}
         <SubmitButton value={value} onSubmit={handleSubmit} />
       </div>
     );

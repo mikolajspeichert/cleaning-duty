@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import DutyPicker from "../DutyPicker/DutyPicker";
 import styles from "./DutyTableItem.sass";
 import remove from "./remove-icon-black.png";

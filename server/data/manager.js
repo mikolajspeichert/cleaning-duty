@@ -83,6 +83,13 @@ exports.updateDuty = (_id, update, express) => {
 };
 
 updateUser = (update, express) => {
+  //  update.holidays = [{
+  //    start: new Date(),
+  //    end: new Date()
+  //  },{
+  //    start: new Date(),
+  //    end: new Date()
+  //  }]
   models.user.findOneAndUpdate({ _id: update.id }, update, err => {
     if (err) generateError(express, "UPDATE_USER", err);
   });

@@ -7,7 +7,6 @@ import { removeUser } from "../App/actions";
 
 import UserTableItem from "../../components/UserTableItem/UserTableItem";
 import AddButton from "../../components/AddButton/AddButton";
-import style from "./UserTable.sass";
 
 // Table of users container
 // On every showup is updated
