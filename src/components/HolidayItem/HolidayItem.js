@@ -1,72 +1,55 @@
 import React, { Component } from "react";
-import styles from './HolidayItem.sass'
+import styles from "./HolidayItem.sass";
+
+class DeleteItem extends React.PureComponent {
+  render = () => {
+    return (
+      <div className="delete-item" onClick={this.props.onClick}>
+        DELETE
+      </div>
+    );
+  };
+}
 
 class HolidayItem extends Component {
+  constructor(props) {
+    super(props);
+    this.hovered = false;
+  }
 
   render = () => {
-    const { holiday, onChange } = this.props
+    const { holiday } = this.props;
     return (
       <tr className="holiday-item">
-        <td>
-          <form onSubmit={e=>e.preventDefault()}>
-            <input
-              type="number"
-              min="1"
-              max="31"
-              name="ds"
-              value={new Date(holiday.start).getDate()}
-              onChange={onChange}
-            />
-            -
-            <input
-              type="number"
-              min="1"
-              max="12"
-              name="ms"
-              value={new Date(holiday.start).getMonth()}
-              onChange={onChange}
-            />
-            -
-            <input
-              type="number"
-              min="2017"
-              max={new Date().getFullYear() + 10}
-              name="ys"
-              value={new Date(holiday.start).getFullYear()}
-              onChange={onChange}
-            />
-            <p>to</p>
-            <input
-              type="number"
-              min="1"
-              max="31"
-              name="de"
-              value={new Date(holiday.end).getDate()}
-              onChange={onChange}
-            />
-            -
-            <input
-              type="number"
-              min="1"
-              max="12"
-              name="me"
-              value={new Date(holiday.end).getMonth()}
-              onChange={onChange}
-            />
-            -
-            <input
-              type="number"
-              min="2017"
-              max={new Date().getFullYear() + 10}
-              name="ye"
-              value={new Date(holiday.end).getFullYear()}
-              onChange={onChange}
-            />
-          </form>
+        <td
+          onMouseEnter={() => {
+            this.hovered = true;
+            this.forceUpdate();
+          }}
+          onMouseLeave={() => {
+            this.hovered = false;
+            this.forceUpdate();
+          }}
+        >
+          {this.hovered
+            ? <DeleteItem onClick={this.props.onDelete}/>
+            : <div>
+                <p>{new Date(holiday.start).getDate()}</p>
+                -
+                <p>{new Date(holiday.start).getMonth() + 1}</p>
+                -
+                <p>{new Date(holiday.start).getFullYear()}</p>
+                <p>to</p>
+                <p>{new Date(holiday.end).getDate()}</p>
+                -
+                <p>{new Date(holiday.end).getMonth() + 1}</p>
+                -
+                <p>{new Date(holiday.end).getFullYear()}</p>
+              </div>}
         </td>
       </tr>
-    )
-  }
+    );
+  };
 }
 
 export default HolidayItem;

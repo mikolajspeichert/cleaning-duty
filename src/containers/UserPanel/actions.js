@@ -5,6 +5,7 @@ export const FIELD_CHANGED = "FIELD_CHANGED";
 export const WRONG_FIELD = "WRONG_FIELD";
 export const USER_SENT = "USER_SENT";
 export const USER_RECEIVED = "USER_RECEIVED";
+export const ADD_HOLIDAY = "ADD_HOLIDAY"
 export const RESET = "RESET";
 
 // Client-side validation
@@ -31,6 +32,13 @@ export function fieldChanged(name, value) {
     name: name,
     value: value
   };
+}
+
+export function addHoliday(holiday){
+  return {
+    type: "ADD_HOLIDAY",
+    value: holiday
+  }
 }
 
 // Acion dispatched on failed validation

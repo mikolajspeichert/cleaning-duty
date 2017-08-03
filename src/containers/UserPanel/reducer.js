@@ -3,6 +3,7 @@ import {
   USER_SENT,
   FIELD_CHANGED,
   USER_RECEIVED,
+  ADD_HOLIDAY,
   RESET
 } from "./actions";
 
@@ -24,6 +25,8 @@ function credentials(state = initialState.credentials, action) {
       return Object.assign({}, state, {
         [action.name]: action.value
       });
+    case ADD_HOLIDAY:
+      state.holidays.push(action.value)
     default:
       return state;
   }
@@ -55,6 +58,11 @@ export function user(state = initialState, action) {
     case USER_RECEIVED: {
       return Object.assign({}, state, {
         credentials: action.data
+      });
+    }
+    case ADD_HOLIDAY: {
+      return Object.assign({}, state, {
+        credentials: credentials(state.credentials, action)
       });
     }
     case RESET:

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { postUser, wrongField, fieldChanged, reset, getUser } from "./actions";
 import UserCredentials from "../../components/UserCredentials/UserCredentials";
-import HolidaysTable from "../../components/HolidaysTable/HolidaysTable";
+import HolidaysTable from "../HolidaysTable/HolidaysTable";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
 // User panel container
