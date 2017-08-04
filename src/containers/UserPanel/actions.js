@@ -5,7 +5,8 @@ export const FIELD_CHANGED = "FIELD_CHANGED";
 export const WRONG_FIELD = "WRONG_FIELD";
 export const USER_SENT = "USER_SENT";
 export const USER_RECEIVED = "USER_RECEIVED";
-export const ADD_HOLIDAY = "ADD_HOLIDAY"
+export const ADD_HOLIDAY = "ADD_HOLIDAY";
+export const DELETE_HOLIDAY = "DELETE_HOLIDAY"
 export const RESET = "RESET";
 
 // Client-side validation
@@ -38,6 +39,14 @@ export function addHoliday(holiday){
   return {
     type: "ADD_HOLIDAY",
     value: holiday
+  }
+}
+
+// Delete holiday by start, cause new holidays may not have ids
+export function deleteHoliday(start){
+  return {
+    type: "DELETE_HOLIDAY",
+    value: start
   }
 }
 

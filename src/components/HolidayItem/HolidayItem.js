@@ -32,7 +32,7 @@ class HolidayItem extends Component {
           }}
         >
           {this.hovered
-            ? <DeleteItem onClick={this.props.onDelete}/>
+            ? <DeleteItem onClick={() => this.props.onDelete(holiday.start)}/>
             : <div>
                 <p>{new Date(holiday.start).getDate()}</p>
                 -

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { addHoliday } from "../UserPanel/actions";
+import { addHoliday, deleteHoliday } from "../UserPanel/actions";
 import HolidayItem from "../../components/HolidayItem/HolidayItem";
 import AddHoliday from "../../components/AddHoliday/AddHoliday";
 
@@ -12,8 +12,12 @@ class HolidaysTable extends Component {
     this.forceUpdate();
   };
 
+  handleDelete = start => {
+    this.props.handleDelete(start)
+    this.forceUpdate();
+  }
   render = () => {
-    const { holidays, handleDelete } = this.props;
+    const { holidays } = this.props;
     return (
       <div>
         <h3>Holidays</h3>
@@ -24,7 +28,7 @@ class HolidaysTable extends Component {
                 <HolidayItem
                   key={holiday.start}
                   holiday={holiday}
-                  onDelete={handleDelete}
+                  onDelete={this.handleDelete}
                 />
               )}
             <AddHoliday onAdd={this.handleAdd} />
@@ -43,8 +47,8 @@ const mapDispatchToProps = dispatch => {
     handleAdd: holiday => {
       dispatch(addHoliday(holiday));
     },
-    handleDelete: id => {
-      dispatch(deleteHoliday(id));
+    handleDelete: start => {
+      dispatch(deleteHoliday(start));
     }
   };
 };

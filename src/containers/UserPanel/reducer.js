@@ -4,6 +4,7 @@ import {
   FIELD_CHANGED,
   USER_RECEIVED,
   ADD_HOLIDAY,
+  DELETE_HOLIDAY,
   RESET
 } from "./actions";
 
@@ -26,7 +27,16 @@ function credentials(state = initialState.credentials, action) {
         [action.name]: action.value
       });
     case ADD_HOLIDAY:
-      state.holidays.push(action.value)
+      state.holidays.push(action.value);
+      return state;
+    case DELETE_HOLIDAY:
+      //state.holidays.filter((element) => false); not working?
+      for(var i = 0; i < state.holidays.length; i++){
+        if(state.holidays[i].start == action.value){
+          state.holidays.splice(i,1)
+          break
+        }
+      }
     default:
       return state;
   }
@@ -60,6 +70,7 @@ export function user(state = initialState, action) {
         credentials: action.data
       });
     }
+    case DELETE_HOLIDAY:
     case ADD_HOLIDAY: {
       return Object.assign({}, state, {
         credentials: credentials(state.credentials, action)
