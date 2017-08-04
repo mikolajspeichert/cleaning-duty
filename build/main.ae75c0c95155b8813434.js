@@ -953,7 +953,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".add-button{text-align:center;margin:auto;font:2em Helvetica,sans-serif;cursor:pointer}.add-button:hover{color:#55d6ba}", ""]);
+exports.push([module.i, ".add-button {\n  text-align: center;\n  margin: auto;\n  font: 2em Helvetica, sans-serif;\n  cursor: pointer; }\n\n.add-button:hover {\n  color: #55D6BA; }\n", ""]);
 
 // exports
 
@@ -968,7 +968,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".duty-table-item form{position:relative;float:left;margin-left:-1px}.duty-table-item input{border:none;border-bottom:1px solid #d3d3d3;font-size:1.4em}", ""]);
+exports.push([module.i, ".duty-table-item form {\n  position: relative;\n  float: left;\n  margin-left: -1px; }\n\n.duty-table-item input {\n  border: none;\n  border-bottom: 1px solid #d3d3d3;\n  font-size: 1.4em; }\n", ""]);
 
 // exports
 
@@ -983,7 +983,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".picker-wrapper{display:inline-block}.picker-wrapper.transparentish{opacity:.3}.picker-item{border:2px solid #000;border-radius:10px;width:2.5em;cursor:pointer;display:inherit;padding:.7em 1.5em;margin:0 .2em;float:left!important}.picker-item.selected{color:#fff;background-color:#55d6ba}", ""]);
+exports.push([module.i, ".picker-wrapper {\n  display: inline-block; }\n\n.picker-wrapper.transparentish {\n  opacity: 0.3; }\n\n.picker-item {\n  border: 2px solid #000000;\n  border-radius: 10px;\n  width: 2.5em;\n  cursor: pointer;\n  display: inherit;\n  padding: 0.7em 1.5em;\n  margin: 0 0.2em;\n  float: left !important; }\n\n.picker-item.selected {\n  color: #FFFFFF;\n  background-color: #55D6BA; }\n", ""]);
 
 // exports
 
@@ -998,7 +998,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".duty-table-item .item:not(.new):hover{background-color:#fafafa}.duty-table-item .item p{position:relative;float:left}.duty-table-item .item div{position:relative;float:right}.duty-table-item .item:not(.new):hover img{display:inline}.duty-table-item .item img{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;float:right;height:1.5em;width:1.5em;cursor:pointer;display:none}.duty-table-item .item>img:hover{content:url(" + __webpack_require__("./src/components/DutyTableItem/remove-icon-red.png") + ")}", ""]);
+exports.push([module.i, ".duty-table-item .item:not(.new):hover {\n  background-color: #fafafa; }\n\n.duty-table-item .item p {\n  position: relative;\n  float: left; }\n\n.duty-table-item .item div {\n  position: relative;\n  float: right; }\n\n.duty-table-item .item:not(.new):hover img {\n  display: inline; }\n\n.duty-table-item .item img {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  position: relative;\n  float: right;\n  height: 1.5em;\n  width: 1.5em;\n  cursor: pointer;\n  display: none; }\n\n.duty-table-item .item > img:hover {\n  content: url(" + __webpack_require__("./src/components/DutyTableItem/remove-icon-red.png") + "); }\n", ""]);
 
 // exports
 
@@ -1013,7 +1013,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".header-root{text-align:center;margin-bottom:5vh}.header-root h1{font:3em Helvetica,sans-serif}.header-root div{margin:auto;display:inline-block}", ""]);
+exports.push([module.i, ".header-root {\n  text-align: center;\n  margin-bottom: 5vh; }\n\n.header-root h1 {\n  font: 3em Helvetica, sans-serif; }\n\n.header-root div {\n  margin: auto;\n  display: inline-block; }\n", ""]);
 
 // exports
 
@@ -1028,7 +1028,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".holiday-item{font-size:1.5em;height:2em}.holiday-item:hover{background-color:#fafafa}.holiday-item p{display:inline;margin:0 .5em}.holiday-item input{border:none;text-align:right;font-size:1em;border-bottom:1px solid #d3d3d3}.holiday-item input.error{color:red;border-bottom:1px solid red}.holiday-item .hint{display:none}.holiday-item .hint.visible{display:inherit}input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{-webkit-appearance:none}.delete-item{margin:auto;font-size:.7em;line-height:2em;height:2em;width:6em;border-radius:10px;background-color:#000;color:#fff;cursor:pointer}.delete-item:hover{background-color:red}", ""]);
+exports.push([module.i, ".holiday-item {\n  font-size: 1.5em;\n  height: 2em; }\n\n.holiday-item:hover {\n  background-color: #fafafa; }\n\n.holiday-item p {\n  display: inline;\n  margin: 0 0.5em; }\n\n.holiday-item input {\n  border: none;\n  text-align: right;\n  font-size: 1em;\n  border-bottom: 1px solid #d3d3d3; }\n\n.holiday-item input.error {\n  color: #ff0000;\n  border-bottom: 1px solid #ff0000; }\n\n.holiday-item .hint {\n  display: none; }\n\n.holiday-item .hint.visible {\n  display: inherit; }\n\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none; }\n\n.delete-item {\n  margin: auto;\n  font-size: 0.7em;\n  line-height: 2em;\n  height: 2em;\n  width: 6em;\n  border-radius: 10px;\n  background-color: #000000;\n  color: #ffffff;\n  cursor: pointer; }\n\n.delete-item:hover {\n  background-color: #ff0000; }\n", ""]);
 
 // exports
 
@@ -1043,7 +1043,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".button-root{background-color:#000;margin:0 .1em!important;display:inline-block;font:1em Helvetica,sans-serif;color:#fff;width:7em;height:2.5em;line-height:2.5em}", ""]);
+exports.push([module.i, ".button-root {\n  background-color: #000000;\n  margin: 0 0.1em !important;\n  display: inline-block;\n  font: 1em Helvetica, sans-serif;\n  color: #FFFFFF;\n  width: 7em;\n  height: 2.5em;\n  line-height: 2.5em; }\n", ""]);
 
 // exports
 
@@ -1058,7 +1058,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".user-submit{border-radius:10px;background-color:#000;color:#fff;padding:.5em 2em;font-family:Helvetica,sans-serif}.user-submit:hover{background-color:#55d6ba}", ""]);
+exports.push([module.i, ".user-submit {\n  border-radius: 10px;\n  background-color: #000000;\n  color: #FFFFFF;\n  padding: 0.5em 2em;\n  font-family: Helvetica, sans-serif; }\n\n.user-submit:hover {\n  background-color: #55D6BA; }\n", ""]);
 
 // exports
 
@@ -1073,7 +1073,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".user-credentials{font:1em Helvetica,sans-serif;margin-bottom:.7em}.user-credentials input{display:block;border:none;border-bottom:2px solid #d3d3d3;margin:.6em 1em;font:2.5em Helvetica,sans-serif;color:#000}.user-credentials input:not(user-credentials:last-child){padding:.2em .5em}.user-credentials div{text-align:center}.user-credentials div>*{display:inline}.user-credentials div p{margin-left:.75em}.user-credentials div p.error{color:red}", ""]);
+exports.push([module.i, ".user-credentials {\n  font: 1em Helvetica, sans-serif;\n  margin-bottom: 0.7em; }\n\n.user-credentials input {\n  display: block;\n  border: none;\n  border-bottom: 2px solid #d3d3d3;\n  margin: 0.6em 1em;\n  font: 2.5em Helvetica, sans-serif;\n  color: #000000; }\n\n.user-credentials input:not(user-credentials:last-child) {\n  padding: 0.2em 0.5em; }\n\n.user-credentials div {\n  text-align: center; }\n\n.user-credentials div > * {\n  display: inline; }\n\n.user-credentials div p {\n  margin-left: 0.75em; }\n\n.user-credentials div p.error {\n  color: #FF0000; }\n", ""]);
 
 // exports
 
@@ -1088,7 +1088,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".user-table-item{vertical-align:middle}.user-table-item .item{height:2em;text-align:left;padding:.5em;font:2em Helvetica,sans-serif}.user-table-item .item:hover{background-color:#fafafa}.user-table-item .item>img.hovered{display:inline}.user-table-item .item>img{display:none}.user-table-item .item img{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;float:right;height:1.5em;width:1.5em;cursor:pointer}.user-table-item .item>img:hover{content:url(" + __webpack_require__("./src/components/UserTableItem/remove-icon-red.png") + ")}.user-table-item .item .edit:hover{content:url(" + __webpack_require__("./src/components/UserTableItem/settings-icon-material.png") + ")}", ""]);
+exports.push([module.i, ".user-table-item {\n  vertical-align: middle; }\n\n.user-table-item .item {\n  height: 2em;\n  text-align: left;\n  padding: 0.5em;\n  font: 2em Helvetica, sans-serif; }\n\n.user-table-item .item:hover {\n  background-color: #fafafa; }\n\n.user-table-item .item > img.hovered {\n  display: inline; }\n\n.user-table-item .item > img {\n  display: none; }\n\n.user-table-item .item img {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  position: relative;\n  float: right;\n  height: 1.5em;\n  width: 1.5em;\n  cursor: pointer; }\n\n.user-table-item .item > img:hover {\n  content: url(" + __webpack_require__("./src/components/UserTableItem/remove-icon-red.png") + "); }\n\n.user-table-item .item .edit:hover {\n  content: url(" + __webpack_require__("./src/components/UserTableItem/settings-icon-material.png") + "); }\n", ""]);
 
 // exports
 
@@ -1103,7 +1103,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "body{text-align:center;font-family:Helvetica,sans-serif}body a{color:inherit;text-decoration:inherit;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}table{overflow:auto;margin:auto;margin-bottom:2em;width:70%}", ""]);
+exports.push([module.i, "body {\n  text-align: center;\n  font-family: Helvetica, sans-serif; }\n\nbody a {\n  color: inherit;\n  text-decoration: inherit;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none; }\n\ntable {\n  overflow: auto;\n  margin: auto;\n  margin-bottom: 2em;\n  width: 70%; }\n", ""]);
 
 // exports
 
@@ -29056,7 +29056,7 @@ class UserCredentials extends _react.Component {
         null,
         _react2.default.createElement("input", {
           type: "text",
-          placeholder: !!credentials.name && "Name",
+          placeholder: credentials.name ? "" : "Name",
           name: "name",
           value: credentials.name,
           onChange: handleChange
@@ -29072,7 +29072,7 @@ class UserCredentials extends _react.Component {
         null,
         _react2.default.createElement("input", {
           type: "email",
-          placeholder: !!credentials.email && "E-mail",
+          placeholder: credentials.email ? "" : "E-mail",
           name: "email",
           value: credentials.email,
           onChange: handleChange
@@ -29088,7 +29088,7 @@ class UserCredentials extends _react.Component {
         null,
         _react2.default.createElement("input", {
           type: "text",
-          placeholder: !!credentials.slack && "Slack nickname",
+          placeholder: credentials.slack ? "" : "Slack nickname",
           name: "slack",
           value: credentials.slack,
           onChange: handleChange

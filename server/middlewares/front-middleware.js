@@ -28,7 +28,15 @@ const addDevMiddlewares = (app, webpackConfig) => {
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
-
+  app.get("*", (req, res) => {
+    fs.readFile(path.join(compiler.outputPath, "index.html"), (err, file) => {
+      if (err) {
+        res.sendStatus(404);
+      } else {
+        res.send(file.toString());
+      }
+    });
+  });
   if (pkg.dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
       const filename = req.path.replace(/^\//, "");
@@ -48,7 +56,7 @@ const addProdMiddlewares = (app, options) => {
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
   app.use(bodyParser.json());
-
+  console.log(outputPath);
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(outputPath, "index.html"))
   );

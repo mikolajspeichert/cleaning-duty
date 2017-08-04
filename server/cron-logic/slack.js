@@ -1,4 +1,4 @@
-import SLACK_WEBHOOK from "../../config/config"
+const SLACK_WEBHOOK = require("../../config/config")
 var slack = require('slack-notify')(SLACK_WEBHOOK);
 
 module.exports = (channel, name, duties) => {

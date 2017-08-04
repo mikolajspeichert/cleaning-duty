@@ -1,4 +1,4 @@
-const manager = require("../data/manager");
+const manager = require("./data/manager");
 
 module.exports = app => {
   //*************************************************
@@ -85,13 +85,5 @@ module.exports = app => {
     });
   });
 
-  app.get("*", (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, "index.html"), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
+  
 };
