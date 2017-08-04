@@ -1,5 +1,5 @@
 const manager = require('../data/manager');
-var slack_not = require('./slack');
+var notifySlack = require('./slack');
 
 const isOnHolidays = (holidays, dateToCheck) => {
   for(let holiday of holidays){
@@ -84,7 +84,7 @@ module.exports = () => {
     }
     for(let id in userDuties){
       let slackuser = users.find((element) => element.id == id)
-    //  slack_not(slackuser.slack, slackuser.name, userDuties[id])
+      notifySlack(slackuser.slack, slackuser.name, userDuties[id])
     }
   })
 }

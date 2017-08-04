@@ -28,15 +28,6 @@ const addDevMiddlewares = (app, webpackConfig) => {
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
-  new CronJob(
-    "00 00 09 * * 1-5",
-    () => {
-      dispense();
-    },
-    null,
-    true,
-    "Europe/Warsaw"
-  );
 
   if (pkg.dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
@@ -44,100 +35,6 @@ const addDevMiddlewares = (app, webpackConfig) => {
       res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
     });
   }
-
-  //*************************************************
-  // All backend logic made by me is here, not much to do
-  // All database logic is in data package
-  // Database: MongoDB, framework: Mongoose.js
-  // Rest is taken from react-boilerplate
-  // I've slightly edited the webpack config
-  app.post("/api/user", (req, res) => {
-    const body = req.body;
-    manager.addUser(body, res);
-  });
-
-  app.post("/api/users/remove", (req, res) => {
-    const id = req.body.id;
-    manager.removeUser(id, res);
-  });
-
-  app.post("/api/duty", (req, res) => {
-    const name = req.body.name;
-    manager.addDuty(name, 0, res);
-  });
-
-  app.post("/api/duties", (req, res) => {
-    const { id, update } = req.body;
-    manager.updateDuty(id, update, res);
-  });
-
-  app.post("/api/duties/remove", (req, res) => {
-    const id = req.body.id;
-    manager.removeDuty(id, res);
-  });
-
-  app.get("/api/dispense", (req, res) => dispense());
-
-  app.get("/api/user/:id", (req, res) => {
-    manager.getUser(req.params.id).then(user => {
-      //    if(!err){
-      res.type("json").json({
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        holidays: user.holidays,
-        slack: user.slack
-      });
-      //      }else{
-      //      manager.generateError(res, "GET_USER", err)
-      //      }
-    });
-  });
-
-  app.get("/api/users", (req, res) => {
-    manager.getUsers().then(result => {
-      //if(!err){
-      res.type("json").json(
-        result.map(user => {
-          return {
-            id: user._id,
-            name: user.name
-          };
-        })
-      );
-      //  }else{
-      //    manager.generateError(res, "GET_USERS", err)
-      //  }
-    });
-  });
-
-  app.get("/api/duties", (req, res) => {
-    manager.getDuties().then(result => {
-      //    if(!err){
-      res.type("json").json(
-        result.map(duty => {
-          return {
-            id: duty._id,
-            name: duty.name,
-            frequency: duty.frequency
-          };
-        })
-      );
-      //    }else{
-      //      manager.generateError(res, "GET_DUTIES", err)
-      //      }
-    });
-  });
-
-  app.get("*", (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, "index.html"), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
 };
 
 // Production middlewares
@@ -168,6 +65,14 @@ module.exports = (app, options) => {
     const webpackConfig = require("../../config/webpack.dev.babel");
     addDevMiddlewares(app, webpackConfig);
   }
-
+  new CronJob(
+    "00 00 09 * * 1-5",
+    () => {
+      dispense();
+    },
+    null,
+    true,
+    "Europe/Warsaw"
+  );
   return app;
 };

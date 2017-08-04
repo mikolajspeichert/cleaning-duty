@@ -2,3 +2,4 @@
 /db
 *.DS_Store
 package-lock.json
+/config/config.js

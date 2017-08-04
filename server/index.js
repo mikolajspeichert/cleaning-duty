@@ -5,6 +5,7 @@ const logger = require("./logger");
 
 const argv = require("minimist")(process.argv.slice(2));
 const setup = require("./middlewares/front-middleware");
+const routes = require("./routes")
 const isDev = process.env.NODE_ENV !== "production";
 const ngrok =
   (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
@@ -22,6 +23,7 @@ setup(app, {
   publicPath: "/"
 });
 
+routes(app);
 // get the intended host and port number, use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host

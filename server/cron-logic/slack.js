@@ -1,4 +1,4 @@
-var SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+import SLACK_WEBHOOK from "../../config/config"
 var slack = require('slack-notify')(SLACK_WEBHOOK);
 
 module.exports = (channel, name, duties) => {

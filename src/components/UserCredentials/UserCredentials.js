@@ -15,7 +15,7 @@ class UserCredentials extends Component {
         <div>
           <input
             type="text"
-            placeholder="Name"
+            placeholder={!!credentials.name && "Name"}
             name="name"
             value={credentials.name}
             onChange={handleChange}
@@ -25,7 +25,7 @@ class UserCredentials extends Component {
         <div>
           <input
             type="email"
-            placeholder="E-mail"
+            placeholder={!!credentials.email && "E-mail"}
             name="email"
             value={credentials.email}
             onChange={handleChange}
@@ -35,7 +35,7 @@ class UserCredentials extends Component {
         <div>
           <input
             type="text"
-            placeholder="Slack nickname"
+            placeholder={!!credentials.slack && "Slack nickname"}
             name="slack"
             value={credentials.slack}
             onChange={handleChange}
