@@ -12,18 +12,26 @@ const inputs = {
 var refs = [];
 
 class AddHoliday extends Component {
+
+  showHint = () => {
+    this.hint.className="hint visible"
+  }
+
   constructDates = () => {
     let start = new Date();
+    start.setHours(7)
+    start.setMinutes(0)
     start.setDate(refs[inputs.STARTDAY].value);
     start.setMonth(refs[inputs.STARTMONTH].value - 1);
     start.setYear(refs[inputs.STARTYEAR].value);
-    let end = new Date();
+    let end = new Date(0);
     end.setDate(refs[inputs.ENDDAY].value);
     end.setMonth(refs[inputs.ENDMONTH].value - 1);
     end.setYear(refs[inputs.ENDYEAR].value);
     this.props.onAdd({ end: end.toISOString(), start: start.toISOString() });
     for(let ref of refs) ref.value = ""
     refs[0].focus()
+    this.hint.className="hint"
   };
 
   handleKeyUp = (keyType, e) => {
@@ -32,7 +40,10 @@ class AddHoliday extends Component {
     if (e.key == "Enter") {
       for (let ref of refs) {
         ref.blur();
-        if (ref.className == "error") return;
+        if (ref.className == "error") {
+          ref.focus();
+          return;
+        }
       }
       this.constructDates();
     }
@@ -54,7 +65,10 @@ class AddHoliday extends Component {
         if (val.length == 2) refs[keyType + 1].focus();
         break;
       case inputs.ENDYEAR:
-        if(val.length == 4) this.handleValidation(keyType, e);
+        if(val.length == 4) {
+          this.handleValidation(keyType, e);
+          this.showHint()
+        }
         break;
     }
   };
@@ -159,6 +173,7 @@ class AddHoliday extends Component {
               onKeyUp={e => this.handleKeyUp(inputs.ENDYEAR, e)}
               onBlur={e => this.handleValidation(inputs.ENDYEAR, e)}
             />
+            <p ref={p => this.hint = p} className="hint">push enter!</p>
           </form>
         </td>
       </tr>

@@ -1,6 +1,12 @@
 const manager = require('../data/manager');
-var slack_not = require('./slack')
+var slack_not = require('./slack');
 
+const isOnHolidays = (holidays, dateToCheck) => {
+  for(let holiday of holidays){
+    if(dateToCheck > holiday.start && dateToCheck < holiday.end) return true
+  }
+  return false
+}
 
 const findUserForDuty = (users, duty, history) =>{
   let fin = {
@@ -16,31 +22,42 @@ const findUserForDuty = (users, duty, history) =>{
     return (code & 1)
   })
   console.log(dutyWeek)
+mainloop:
   for(let user of users){
-    console.log(user.name + " start");
+    console.log("START USER " + user.name);
     let baseDate = new Date(user.created.getTime())
     let could = 0
     let have = 0
     let error = false
-    let now = new Date()
+    const now = new Date()
+
+    if (isOnHolidays(user.holidays, now)) continue mainloop
+
 
     while(baseDate.getTime() <= now.getTime()){
-      if(dutyWeek[baseDate.getDay()]) could++
+      if(dutyWeek[baseDate.getDay()]){
+        if(!isOnHolidays(user.holidays, baseDate)) could++
+      }
       baseDate.setDate(baseDate.getDate() + 1)
     }
-    console.log("could: " + could)
+    console.log("COULD: " + could)
     have = history.filter(
       (history) => history.user_id == user.id && history.duty_id == duty.id
     ).length
-    console.log("have " + have);
+    console.log("HAVE: " + have);
     if(error || could == 0) continue
-    if(have/could < fin.ratio) {
+    if(have/could <= fin.ratio) {
       fin.user = user
       fin.ratio = have/could
     }
-    console.log("ratio: " + have/could);
+    console.log("RATIO: " + have/could);
   }
-  if(!fin.user) return users[0]
+  if(!fin.user){
+    for(let finusr of users){
+      if (!isOnHolidays(finusr.holidays, now)) return finusr
+    }
+    return null
+  }
   else return fin.user
 }
 
@@ -57,17 +74,17 @@ module.exports = () => {
   ]).then(response => {
     let [duties, users, history] = response
     for(let duty of duties){
-      console.log(duty.name + " start");
+      console.log("START DUTY " + duty.name);
       chosen = findUserForDuty(users, duty, history)
+      if(!chosen) return
       if(!userDuties[chosen.id])userDuties[chosen.id] = []
       userDuties[chosen.id].push(duty)
       manager.addHistory(chosen.id, duty.id, new Date())
-      console.log(chosen.name + " has been chosen");
-      console.log(duty.name + " stop");
+      console.log("CHOSEN: " + chosen.name);
     }
     for(let id in userDuties){
       let slackuser = users.find((element) => element.id == id)
-      slack_not(slackuser.slack, slackuser.name, userDuties[id])
+    //  slack_not(slackuser.slack, slackuser.name, userDuties[id])
     }
   })
 }
