@@ -1,4 +1,4 @@
-import { RECEIVE_DUTIES, UPDATE_DUTIES } from "./actions";
+import { RECEIVE_DUTIES, UPDATE_DUTIES } from './actions';
 
 var initialState = [];
 
@@ -12,10 +12,10 @@ export function duties(state = initialState, action) {
           {},
           state,
           state.map(element => {
-            if (element.id == action.id) element.frequency = action.frequency;
+            if (element.id === action.id) element.frequency = action.frequency;
             return element;
-          })
-        )
+          }),
+        ),
       );
     default:
       return state;
