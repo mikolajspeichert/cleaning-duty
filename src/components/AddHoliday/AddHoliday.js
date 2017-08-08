@@ -74,7 +74,7 @@ class AddHoliday extends Component {
 
   handleValidation = (keyType, e) => {
     e.persist();
-    let val = e.target.value;
+    const val = e.target.value;
     switch (keyType) {
       case inputs.STARTDAY:
       case inputs.ENDDAY:
@@ -97,7 +97,7 @@ class AddHoliday extends Component {
           !validate.day(refs[keyType - 2].value, refs[keyType - 1].value, val)
         )
           refs[keyType - 2].className = "error";
-        else refs[keyType - 2].className = "";
+        else refs[keyType - 2].className = '';
         break;
     }
   };
