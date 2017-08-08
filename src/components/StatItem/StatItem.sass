@@ -1,0 +1,47 @@
+@import "../vars"
+
+.stat-item
+  font-size: 1.5em
+
+.stat-item .item>div
+  text-align: left
+  cursor: pointer
+  padding: 0.8em 0
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.stat-item .item>div:hover
+  background-color: #fafafa
+
+.stat-item .item ul
+  width: 50%
+  position: relative
+  display: none
+  float: right
+  margin: 0 !important
+  -webkit-transition: all 0.5s
+  transition: all 0.5s
+
+.stat-item .item ul.active
+  display: block
+
+.stat-item .item ul li
+  list-style-type: none
+
+.stat-item .item ul li:hover
+  background-color: #ff0000 !important
+
+.stat-item .item ul li .user
+  position: relative
+  display: inline
+  margin: 0
+
+.stat-item .item ul li .user.left
+  float: left
+
+.stat-item .item ul li .user.right
+  float: right

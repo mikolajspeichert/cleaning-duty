@@ -70,7 +70,7 @@ exports.addHistory = (user, duty, date) => {
 }
 
 /* Schema:
-* duties: [{
+* [{
     duty: {duty},
     users: [{
       user: {user},
@@ -85,22 +85,24 @@ exports.getStatistics = express => {
   models.history.find({}, (_, history) => {
     models.duty.find({}, (_, duties) => {
       models.user.find({}, (_, users) => {
-        for (const duty of duties) {
+        for (let duty of duties) {
           const wrapper = {
             duty: duty.name,
             users: [],
           }
-          for (const user of users) {
+          for (let user of users) {
             wrapper.users.push({
               user: user.name,
               quantity: history.filter(
                 element =>
-                  element.user_id === user._id && element.duty_id === duty._id
+                  element.user_id.toString() === user._id.toString() &&
+                  element.duty_id.toString() === duty._id.toString()
               ).length,
             })
           }
           final.push(wrapper)
         }
+        express.type('json').json(final)
       })
     })
   })

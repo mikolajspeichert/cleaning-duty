@@ -7,6 +7,7 @@ import Header from '../../components/Header/Header'
 import UserTable from '../UserTable/UserTable'
 import UserPanel from '../UserPanel/UserPanel'
 import DutyTable from '../DutyTable/DutyTable'
+import Statistics from '../Statistics/Statistics'
 
 // Main container
 // Routing created with react-router
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/user/:id" component={UserPanel} />
           <Route path="/user" component={UserPanel} />
           <Route path="/duties" component={DutyTable} />
+          <Route path="/stats" component={Statistics} />
         </Switch>
       </div>
     )

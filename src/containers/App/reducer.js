@@ -2,7 +2,7 @@ import { REQUEST_USERS, RECEIVE_USERS } from './actions'
 
 // Initial state is set as the app is fetching data
 var initialState = {
-  isFetching: true,
+  isFetching: false,
   items: [],
 }
 

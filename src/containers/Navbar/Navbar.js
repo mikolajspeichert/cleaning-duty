@@ -7,7 +7,7 @@ const mapStateToProps = state => {
   const navbarItems = {
     '/': 'Users',
     '/duties': 'Duties',
-    /** , "/stats": "Statistics" */
+    '/stats': 'Statistics',
   }
   return {
     values: navbarItems,

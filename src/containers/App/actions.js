@@ -34,7 +34,7 @@ function fetchUsers() {
 // Thunk middleware magic
 export function fetchIfNeeded() {
   return (dispatch, getState) => {
-    if (!getState().isFetching) {
+    if (!getState().users.isFetching) {
       return dispatch(fetchUsers())
     }
     return false

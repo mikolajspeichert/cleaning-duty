@@ -32,7 +32,7 @@ module.exports = app => {
     manager.removeDuty(id, res)
   })
 
-  app.get('/api/stats', (req, res) => {})
+  app.get('/api/stats', (req, res) => manager.getStatistics(res))
 
   //  app.get('/api/dispense', (req, res) => dispense());
 

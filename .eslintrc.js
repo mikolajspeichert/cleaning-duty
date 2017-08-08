@@ -42,7 +42,11 @@ module.exports = {
 
     "no-dynamic-require": "off",
 
+    "no-return-assign": "off",
+
     "arrow-body-style": "warn",
+
+    "new-cap": "warn",
 
     "prefer-const": "off",
 
@@ -70,8 +74,11 @@ module.exports = {
       "warn",
       {
         singleQuote: true,
+
         trailingComma: "es5",
+
         semi: false,
+
         jsxBracketSameLine: true,
       },
     ],
