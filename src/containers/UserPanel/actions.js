@@ -11,7 +11,7 @@ export const DELETE_HOLIDAY = 'DELETE_HOLIDAY'
 export const RESET = 'RESET'
 
 // Client-side validation
-let validate = (name, value) => true
+var validate = (name, value) => true
 // switch (name) {
 //   //  case "name":
 //   //    if(value == '') return wrongField("name")
