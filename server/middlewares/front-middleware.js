@@ -54,7 +54,7 @@ const addProdMiddlewares = (app, options) => {
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(outputPath, 'index.html')),
+    res.sendFile(path.resolve(outputPath, 'index.html'))
   );
 };
 
@@ -76,7 +76,7 @@ module.exports = (app, options) => {
     },
     null,
     true,
-    'Europe/Warsaw',
+    'Europe/Warsaw'
   );
   return app;
 };

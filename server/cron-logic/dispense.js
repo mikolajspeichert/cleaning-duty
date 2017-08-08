@@ -40,8 +40,7 @@ const findUserForDuty = (users, duty, history) => {
     }
     console.log(`COULD: ${could}`);
     have = history.filter(
-      element => element.user_id == user.id && history.duty_id == duty.id,
-    ).length;
+      element => element.user_id == user.id && history.duty_id == duty.id).length
     console.log(`HAVE: ${have}`);
     if (error || could == 0) continue;
     if (have / could <= fin.ratio) {

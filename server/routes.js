@@ -59,7 +59,7 @@ module.exports = app => {
         result.map(user => ({
           id: user._id,
           name: user.name,
-        })),
+        }))
       );
       //  }else{
       //    manager.generateError(res, "GET_USERS", err)
@@ -75,7 +75,7 @@ module.exports = app => {
           id: duty._id,
           name: duty.name,
           frequency: duty.frequency,
-        })),
+        }))
       );
       //    }else{
       //      manager.generateError(res, "GET_DUTIES", err)

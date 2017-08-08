@@ -95,9 +95,8 @@ exports.getStatistics = express => {
               user: user.name,
               quantity: history.filter(
                 element =>
-                  element.user_id === user._id && element.duty_id === duty._id,
-              ).length,
-            });
+                  element.user_id === user._id && element.duty_id === duty._id
+              ).length});
           }
           final.push(wrapper);
         }
