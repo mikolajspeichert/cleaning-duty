@@ -1,11 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styles from "./NavbarItem.sass";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import styles from './NavbarItem.sass'
 
 class NavbarItem extends React.Component {
   render() {
-    const values = this.props.values;
-    const keys = Object.keys(values);
+    const values = this.props.values
+    const keys = Object.keys(values)
     return (
       <div>
         {keys.map(key =>
@@ -13,14 +13,13 @@ class NavbarItem extends React.Component {
             key={values[key]}
             className="button-root"
             to={key}
-            activeClassName="selected"
-          >
+            activeClassName="selected">
             {values[key]}
           </NavLink>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default NavbarItem;
+export default NavbarItem

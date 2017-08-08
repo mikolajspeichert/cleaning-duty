@@ -1,21 +1,20 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchIfNeeded } from "./actions";
-import { Switch, Route } from "react-router-dom";
-import { withRouter } from "react-router";
-import Header from "../../components/Header/Header";
-import UserTable from "../UserTable/UserTable";
-import UserPanel from "../UserPanel/UserPanel";
-import DutyTable from "../DutyTable/DutyTable";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { fetchIfNeeded } from './actions'
+import Header from '../../components/Header/Header'
+import UserTable from '../UserTable/UserTable'
+import UserPanel from '../UserPanel/UserPanel'
+import DutyTable from '../DutyTable/DutyTable'
 
 // Main container
 // Routing created with react-router
 // By default app is showing the UserTable container
 class App extends Component {
   componentDidMount() {
-    const dispatch = this.props.dispatch;
-    dispatch(fetchIfNeeded());
+    const dispatch = this.props.dispatch
+    dispatch(fetchIfNeeded())
   }
 
   render() {
@@ -29,8 +28,8 @@ class App extends Component {
           <Route path="/duties" component={DutyTable} />
         </Switch>
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(connect(null)(App));
+export default withRouter(connect(null)(App))

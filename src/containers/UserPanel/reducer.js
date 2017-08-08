@@ -5,40 +5,40 @@ import {
   USER_RECEIVED,
   ADD_HOLIDAY,
   DELETE_HOLIDAY,
-  RESET
-} from "./actions";
+  RESET,
+} from './actions'
 
 // Initial state contains no user data
 var initialState = {
   credentials: {
-    name: "",
-    email: "",
-    slack: "",
-    holidays: []
+    name: '',
+    email: '',
+    slack: '',
+    holidays: [],
   },
-  error: ""
-};
+  error: '',
+}
 
 // Function modifying credentials state
 function credentials(state = initialState.credentials, action) {
   switch (action.type) {
     case FIELD_CHANGED:
       return Object.assign({}, state, {
-        [action.name]: action.value
-      });
+        [action.name]: action.value,
+      })
     case ADD_HOLIDAY:
-      state.holidays.push(action.value);
-      return state;
+      state.holidays.push(action.value)
+      return state
     case DELETE_HOLIDAY:
-      //state.holidays.filter((element) => false); not working?
-      for(var i = 0; i < state.holidays.length; i++){
-        if(state.holidays[i].start == action.value){
-          state.holidays.splice(i,1)
+      // state.holidays.filter((element) => false); not working?
+      for (let i = 0; i < state.holidays.length; i++) {
+        if (state.holidays[i].start == action.value) {
+          state.holidays.splice(i, 1)
           break
         }
       }
     default:
-      return state;
+      return state
   }
 }
 
@@ -51,34 +51,35 @@ function credentials(state = initialState.credentials, action) {
 //  RESET means current state will be replaced with initial state
 export function user(state = initialState, action) {
   switch (action.type) {
-    case USER_SENT: {
-      error: action.error;
-    }
+    case USER_SENT:
+      return Object.assign({}, state, {
+        error: action.error,
+      })
     case WRONG_FIELD: {
       return Object.assign({}, state, {
-        error: action.field
-      });
+        error: action.field,
+      })
     }
     case FIELD_CHANGED: {
       return Object.assign({}, state, {
         credentials: credentials(state.credentials, action),
-        error: ""
-      });
+        error: '',
+      })
     }
     case USER_RECEIVED: {
       return Object.assign({}, state, {
-        credentials: action.data
-      });
+        credentials: action.data,
+      })
     }
     case DELETE_HOLIDAY:
     case ADD_HOLIDAY: {
       return Object.assign({}, state, {
-        credentials: credentials(state.credentials, action)
-      });
+        credentials: credentials(state.credentials, action),
+      })
     }
     case RESET:
-      return initialState;
+      return initialState
     default:
-      return state;
+      return state
   }
 }

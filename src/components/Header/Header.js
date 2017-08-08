@@ -6,8 +6,8 @@ class Header extends React.PureComponent {
   render() {
     return (
       <div className="header-root">
-            <h1>Cleaning duty</h1>
-            <Navbar/>
+        <h1>Cleaning duty</h1>
+        <Navbar />
       </div>
     )
   }

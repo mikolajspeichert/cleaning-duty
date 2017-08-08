@@ -1,24 +1,9 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-// ESLint configuration
-// http://eslint.org/docs/user-guide/configuring
 module.exports = {
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
 
-  extends: [
-    'airbnb',
-    'prettier',
-    'prettier/react',
-  ],
+  extends: ["airbnb", "prettier", "prettier/react"],
 
-  plugins: ['prettier'],
+  plugins: ["prettier"],
 
   globals: {
     __DEV__: true,
@@ -29,57 +14,73 @@ module.exports = {
   },
 
   rules: {
-    // `js` and `jsx` are common extensions
-    // `mjs` is for `universal-router` only, for now
-    'import/extensions': [
-      'error',
-      'always',
+    "import/extensions": [
+      "error",
+      "always",
       {
-        js: 'never',
-        jsx: 'never',
-        mjs: 'never',
+        js: "never",
+        jsx: "never",
+        mjs: "never",
       },
     ],
 
-    // Not supporting nested package.json yet
-    // https://github.com/benmosher/eslint-plugin-import/issues/458
-    'import/no-extraneous-dependencies': 'off',
+    "import/no-extraneous-dependencies": "off",
 
-    // Recommend not to leave any console.log in your code
-    // Use console.error, console.warn and console.info instead
-    'no-console': [
-      'error',
+    "import/prefer-default-export": "off",
+
+    "no-console": "off",
+
+    "no-var": "off",
+
+    "no-shadow": "warn",
+
+    "no-restricted-syntax": "warn",
+
+    "no-param-reassign": "warn",
+
+    "no-underscore-dangle": ["error", { allow: ["_id"] }],
+
+    "no-dynamic-require": "off",
+
+    "arrow-body-style": "warn",
+
+    "prefer-const": "off",
+
+    "global-require": "off",
+
+    "no-bitwise": "off",
+
+    "no-continue": "off",
+
+    "no-plusplus": "off",
+
+    "no-redeclare": "off",
+
+    "no-unused-vars": ["error", { varsIgnorePattern: "styles" }],
+
+    "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
+
+    "react/prefer-stateless-function": "off",
+
+    "react/prop-types": "warn",
+
+    eqeqeq: "warn",
+
+    "prettier/prettier": [
+      "warn",
       {
-        allow: ['warn', 'error', 'info'],
-      },
-    ],
-
-    // Allow js files to use jsx syntax, too
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
-
-    // Automatically convert pure class to function by
-    // babel-plugin-transform-react-pure-class-to-function
-    // https://github.com/kriasoft/react-starter-kit/pull/961
-    'react/prefer-stateless-function': 'off',
-
-    // ESLint plugin for prettier formatting
-    // https://github.com/prettier/eslint-plugin-prettier
-    'prettier/prettier': [
-      'error',
-      {
-        // https://github.com/prettier/prettier#options
         singleQuote: true,
-        trailingComma: 'all',
+        trailingComma: "es5",
+        semi: false,
+        jsxBracketSameLine: true,
       },
     ],
   },
 
   settings: {
-    // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-    // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
-    'import/resolver': {
+    "import/resolver": {
       node: {
-        moduleDirectory: ['node_modules', 'src'],
+        moduleDirectory: ["node_modules", "src"],
       },
     },
   },

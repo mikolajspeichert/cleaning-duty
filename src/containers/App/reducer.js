@@ -1,10 +1,10 @@
-import { REQUEST_USERS, RECEIVE_USERS } from "./actions";
+import { REQUEST_USERS, RECEIVE_USERS } from './actions'
 
-//Initial state is set as the app is fetching data
+// Initial state is set as the app is fetching data
 var initialState = {
   isFetching: true,
-  items: []
-};
+  items: [],
+}
 
 // Reducer for UserTable container
 // handles two actions:
@@ -14,14 +14,14 @@ export function users(state = initialState, action) {
   switch (action.type) {
     case REQUEST_USERS:
       return Object.assign({}, state, {
-        isFetching: true
-      });
+        isFetching: true,
+      })
     case RECEIVE_USERS:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.users
-      });
+        items: action.users,
+      })
     default:
-      return state;
+      return state
   }
 }
