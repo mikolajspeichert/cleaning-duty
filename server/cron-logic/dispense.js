@@ -22,6 +22,7 @@ const findUserForDuty = (users, duty, history) => {
     return code & 1
   })
   console.log(dutyWeek)
+  if (dutyWeek[new Date().getDay()]) return null
   for (let user of users) {
     console.log(`START USER ${user.name}`)
     const baseDate = new Date(user.created.getTime())
@@ -69,13 +70,13 @@ module.exports = () => {
     for (let duty of duties) {
       console.log(`START DUTY ${duty.name}`)
       let chosen = findUserForDuty(users, duty, history)
-      if (!chosen) return
+      if (!chosen) continue
       if (!userDuties[chosen.id]) userDuties[chosen.id] = []
       userDuties[chosen.id].push(duty)
       manager.addHistory(chosen.id, duty.id, new Date())
       console.log(`CHOSEN: ${chosen.name}`)
     }
-    for (let id of userDuties) {
+    for (const id in userDuties) {
       const slackuser = users.find(element => element.id == id)
       notifySlack(slackuser.slack, slackuser.name, userDuties[id])
     }

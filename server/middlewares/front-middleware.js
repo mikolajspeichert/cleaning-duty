@@ -70,7 +70,7 @@ module.exports = (app, options) => {
     addDevMiddlewares(app, webpackConfig)
   }
   CronJob(
-    '00 00 09 * * 1-5',
+    '00 00 12 * * 1-5',
     () => {
       dispense()
     },
