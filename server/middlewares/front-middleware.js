@@ -69,8 +69,8 @@ module.exports = (app, options) => {
     const webpackConfig = require('../../config/webpack.dev.babel')
     addDevMiddlewares(app, webpackConfig)
   }
-  CronJob(
-    '00 00 12 * * 1-5',
+  new CronJob(
+    '00 00 10 * * 1-5',
     () => {
       dispense()
     },
