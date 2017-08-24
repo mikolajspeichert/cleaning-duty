@@ -90,6 +90,6 @@ module.exports = app => {
 
   app.get('/api/done/:id', (req, res, next) => {
     manager.setHistoryDone(req.params.id, res)
-    next()
+    res.send('You did it!')
   })
 }

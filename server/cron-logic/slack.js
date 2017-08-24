@@ -27,12 +27,13 @@ module.exports.afternoon = (channel, name, duties, id) => {
   for (const duty of duties) {
     content += `${duty.name} \n`
   }
+  content += `\nIf you want to change the hour of your notifications, go to: http://node.thinksmart.pl:3000/user/${id}`
   let attachments = [
     {
       fallback:
         'If you want to stop the notifications, go to: http://node.thinksmart.pl:3000',
       title: 'I did it!',
-      title_link: `http://localhost:3000/api/done/${id}`,
+      title_link: `http://node.thinksmart.pl:3000/api/done/${id}`,
     },
   ]
 
