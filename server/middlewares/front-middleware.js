@@ -69,7 +69,7 @@ module.exports = (app, options) => {
     const webpackConfig = require('../../config/webpack.dev.babel')
     addDevMiddlewares(app, webpackConfig)
   }
-  new CronJob(
+  new CronJob( // eslint-disable-line no-new
     '00 00 10 * * 1-5',
     () => {
       dispense()

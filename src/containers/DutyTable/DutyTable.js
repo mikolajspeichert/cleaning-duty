@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import { getDuties, updateDuties, postDuty, removeDuty } from "./actions";
-import utils from "../../utils/dutycoding";
-import DutyTableItem from "../../components/DutyTableItem/DutyTableItem";
-import AddDuty from "../../components/AddDuty/AddDuty";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { getDuties, updateDuties, postDuty, removeDuty } from './actions'
+import utils from '../../utils/dutycoding'
+import DutyTableItem from '../../components/DutyTableItem/DutyTableItem'
+import AddDuty from '../../components/AddDuty/AddDuty'
 
 class DutyTable extends Component {
   componentWillMount = () => {
-    this.props.dispatch(getDuties());
-  };
+    this.props.dispatch(getDuties())
+  }
 
   handleAdd = name => {
-    this.props.dispatch(postDuty(name));
-  };
+    this.props.dispatch(postDuty(name))
+  }
 
   render = () => {
-    const { duties, dispatch } = this.props;
+    const { duties, dispatch } = this.props
     return (
       <div>
         <table>
@@ -28,10 +28,10 @@ class DutyTable extends Component {
                     duty={duty}
                     key={duty.id}
                     onEdit={(day, value) => {
-                      dispatch(updateDuties(duty.id, day, value));
+                      dispatch(updateDuties(duty.id, day, value))
                     }}
                     onRemove={id => {
-                      dispatch(removeDuty(id));
+                      dispatch(removeDuty(id))
                     }}
                   />
                 )}
@@ -39,15 +39,15 @@ class DutyTable extends Component {
           </tbody>
         </table>
       </div>
-    );
-  };
+    )
+  }
 }
 
 const mapStateToProps = state => {
-  utils.mapCodeToSchedule(state.duties);
+  utils.mapCodeToSchedule(state.duties)
   return {
-    duties: utils.mapCodeToSchedule(state.duties)
-  };
-};
+    duties: utils.mapCodeToSchedule(state.duties),
+  }
+}
 
-export default withRouter(connect(mapStateToProps)(DutyTable));
+export default withRouter(connect(mapStateToProps)(DutyTable))

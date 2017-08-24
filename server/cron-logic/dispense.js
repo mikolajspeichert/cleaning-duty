@@ -1,5 +1,36 @@
+const CronJob = require('cron').CronJob
 const manager = require('../data/manager')
 const notifySlack = require('./slack')
+
+const slackLoop = (slackuser, duties, bonus = 0) => {
+  let date = new Date()
+  if (!slackuser.reminder_hour) return
+  date.setHours(slackuser.reminder_hour)
+  date.setMinutes(bonus)
+  date.setSeconds(0)
+  date.setMinutes(date.getMinutes() + 1)
+  new CronJob( // eslint-disable-line no-new
+    date,
+    () => {
+      console.log('chuj')
+      manager.getLastHistory(slackuser.id).then(duty => {
+        console.log(duty)
+        if (!duty.done && bonus <= 50) {
+          notifySlack.afternoon(
+            slackuser.slack,
+            slackuser.name,
+            duties,
+            slackuser.id
+          )
+          slackLoop(slackuser, duties, bonus + 10)
+        }
+      })
+    },
+    null,
+    true,
+    'Europe/Warsaw'
+  )
+}
 
 const isOnHolidays = (holidays, dateToCheck) => {
   for (const holiday of holidays) {
@@ -22,7 +53,7 @@ const findUserForDuty = (users, duty, history) => {
     return code & 1
   })
   console.log(dutyWeek)
-  if (dutyWeek[new Date().getDay()]) return null
+  if (!dutyWeek[new Date().getDay() - 1]) return null
   for (let user of users) {
     console.log(`START USER ${user.name}`)
     const baseDate = new Date(user.created.getTime())
@@ -41,7 +72,7 @@ const findUserForDuty = (users, duty, history) => {
     }
     console.log(`COULD: ${could}`)
     have = history.filter(
-      element => element.user_id == user.id && history.duty_id == duty.id
+      element => element.user_id == user.id && element.duty_id == duty.id
     ).length
     console.log(`HAVE: ${have}`)
     if (error || could == 0) continue
@@ -78,7 +109,8 @@ module.exports = () => {
     }
     for (const id in userDuties) {
       const slackuser = users.find(element => element.id == id)
-      notifySlack(slackuser.slack, slackuser.name, userDuties[id])
+      notifySlack.morning(slackuser.slack, slackuser.name, userDuties[id])
+      slackLoop(slackuser, userDuties[id])
     }
   })
 }

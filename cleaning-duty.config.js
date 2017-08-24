@@ -1,6 +1,6 @@
 module.exports = {
   name: 'Cleaning-duty',
-  script: 'server'
+  script: 'server',
   watch: true,
   env: {
     NODE_ENV: 'production',

@@ -14,6 +14,7 @@ var initialState = {
     name: '',
     email: '',
     slack: '',
+    reminder_hour: 14,
     holidays: [],
   },
   error: '',

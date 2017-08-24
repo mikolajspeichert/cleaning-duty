@@ -21,6 +21,13 @@ const generateError = (express, tag, error) => {
   })
 }
 
+const updateUser = (update, express) => {
+  console.log(update)
+  models.user.findOneAndUpdate({ _id: update.id }, update, err => {
+    if (err) generateError(express, 'UPDATE_USER', err)
+  })
+}
+
 exports.generateError = generateError
 exports.addUser = (body, express) => {
   if (body.id) updateUser(body, express)
@@ -29,6 +36,7 @@ exports.addUser = (body, express) => {
       name: body.name,
       email: body.email,
       slack: body.slack,
+      reminder_hour: body.reminder_hour,
       created: new Date(),
     }).save(err => {
       if (err) {
@@ -120,10 +128,27 @@ exports.updateDuty = (_id, update, express) => {
   })
 }
 
-const updateUser = (update, express) => {
-  models.user.findOneAndUpdate({ _id: update.id }, update, err => {
-    if (err) generateError(express, 'UPDATE_USER', err)
-  })
-}
+exports.getLastHistory = (
+  user_id // eslint-disable-line camelcase
+) =>
+  models.history
+    .findOne({
+      user_id,
+    })
+    .sort('-date')
+    .exec()
+
+exports.setHistoryDone = (
+  user_id, // eslint-disable-line camelcase
+  express
+) =>
+  models.history.findOneAndUpdate(
+    { user_id },
+    { done: true },
+    { sort: '-date' },
+    err => {
+      if (err) generateError(express, 'UPDATE_HISTORY', err)
+    }
+  )
 
 exports.getHistory = () => models.history.find({}).exec()

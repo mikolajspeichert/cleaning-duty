@@ -48,7 +48,7 @@ class AddHoliday extends Component {
       this.constructDates()
     }
     let val = e.target.value
-    switch (keyType) {
+    switch (keyType) { // eslint-disable-line default-case
       case inputs.STARTDAY:
         if (val.length == 2) refs[keyType + 1].focus()
         break
@@ -76,7 +76,7 @@ class AddHoliday extends Component {
   handleValidation = (keyType, e) => {
     e.persist()
     const val = e.target.value
-    switch (keyType) {
+    switch (keyType) { // eslint-disable-line default-case
       case inputs.STARTDAY:
       case inputs.ENDDAY:
         if (!validate.day(val)) refs[keyType].className = 'error'

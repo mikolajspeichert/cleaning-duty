@@ -35,7 +35,10 @@ module.exports = app => {
 
   app.get('/api/stats', (req, res) => manager.getStatistics(res))
 
-  //  app.get('/api/dispense', (req, res) => dispense())
+  // app.get('/api/dispense', (req, res) => {
+  //   dispense()
+  //   res.send('cojestkurwa')
+  // })
 
   app.get('/api/user/:id', (req, res) => {
     manager.getUser(req.params.id).then(user => {
@@ -45,6 +48,7 @@ module.exports = app => {
         email: user.email,
         name: user.name,
         holidays: user.holidays,
+        reminder_hour: user.reminder_hour,
         slack: user.slack,
       })
       //      }else{
@@ -82,5 +86,10 @@ module.exports = app => {
       //      manager.generateError(res, "GET_DUTIES", err)
       //      }
     })
+  })
+
+  app.get('/api/done/:id', (req, res, next) => {
+    manager.setHistoryDone(req.params.id, res)
+    next()
   })
 }

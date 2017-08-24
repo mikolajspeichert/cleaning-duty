@@ -15,7 +15,7 @@ class Statistics extends Component {
       <table>
         <tbody>
           {!stats.length
-            ? <p>Loading...</p>
+            ? <div>Loading...</div>
             : stats.map(d => <StatItem item={d} key={d.duty} />)}
         </tbody>
       </table>
