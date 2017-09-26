@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DutyPicker from '../DutyPicker/DutyPicker'
-import styles from './AddDuty.sass'
+import DutyPicker from '../DutyPicker'
+import './style.sass'
 
 class AddDuty extends Component {
   handleEnterPress = e => {

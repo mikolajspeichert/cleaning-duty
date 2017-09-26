@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchStats } from './actions'
-import StatItem from '../../components/StatItem/StatItem'
+import StatItem from '../../components/StatItem'
 
 class Statistics extends Component {
   componentWillMount = () => {

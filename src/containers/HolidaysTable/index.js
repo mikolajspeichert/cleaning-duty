@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { addHoliday, deleteHoliday } from '../UserPanel/actions'
-import HolidayItem from '../../components/HolidayItem/HolidayItem'
-import AddHoliday from '../../components/AddHoliday/AddHoliday'
+import HolidayItem from '../../components/HolidayItem'
+import AddHoliday from '../../components/AddHoliday'
 
 class HolidaysTable extends Component {
   handleAdd = holiday => {

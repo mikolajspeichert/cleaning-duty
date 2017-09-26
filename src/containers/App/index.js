@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { fetchIfNeeded } from './actions'
-import Header from '../../components/Header/Header'
-import UserTable from '../UserTable/UserTable'
-import UserPanel from '../UserPanel/UserPanel'
-import DutyTable from '../DutyTable/DutyTable'
-import Statistics from '../Statistics/Statistics'
-// import SpecialDates from '../SpecialDates/SpecialDates'
+import Header from '../../components/Header'
+import UserTable from '../UserTable'
+import UserPanel from '../UserPanel'
+import DutyTable from '../DutyTable'
+import Statistics from '../Statistics'
+import SpecialDates from '../SpecialDates'
 
 // Main container
 // Routing created with react-router
@@ -29,7 +29,7 @@ class App extends Component {
           <Route path="/user" component={UserPanel} />
           <Route path="/duties" component={DutyTable} />
           <Route path="/stats" component={Statistics} />
-          {/* <Route path="/dates" component={SpecialDates} /> */}
+          <Route path="/dates" component={SpecialDates} />
         </Switch>
       </div>
     )

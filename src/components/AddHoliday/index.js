@@ -36,8 +36,8 @@ class AddHoliday extends Component {
 
   handleKeyUp = (keyType, e) => {
     e.persist()
-    if (e.key == 'Tab' || e.key == 'Shift') return
-    if (e.key == 'Enter') {
+    if (e.key === 'Tab' || e.key == 'Shift') return
+    if (e.key === 'Enter') {
       for (let ref of refs) {
         ref.blur()
         if (ref.className == 'error') {

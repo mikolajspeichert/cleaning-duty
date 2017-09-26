@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import settingsBlack from './settings-icon-black.png'
-// import settingsProd from './settings-icon-material.png'
-// import remove from './remove-icon-material.png'
 import remove from './remove-icon-black.png'
-import styles from './UserTableItem.sass'
+import './style.sass'
 
 class UserTableItem extends Component {
   constructor(props) {

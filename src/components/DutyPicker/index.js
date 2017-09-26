@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './DutyPicker.sass'
+import './style.sass'
 
 class DutyPicker extends Component {
   render = () => {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { getDuties, updateDuties, postDuty, removeDuty } from './actions'
 import utils from '../../utils/dutycoding'
-import DutyTableItem from '../../components/DutyTableItem/DutyTableItem'
-import AddDuty from '../../components/AddDuty/AddDuty'
+import DutyTableItem from '../../components/DutyTableItem'
+import AddDuty from '../../components/AddDuty'
 
 class DutyTable extends Component {
   componentWillMount = () => {

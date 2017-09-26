@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchIfNeeded, removeUser } from '../App/actions'
-import UserTableItem from '../../components/UserTableItem/UserTableItem'
-import AddButton from '../../components/AddButton/AddButton'
+import UserTableItem from '../../components/UserTableItem'
+import AddButton from '../../components/AddButton'
 
 // Table of users container
 // On every showup is updated

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import styles from './UserCredentials.sass'
+import './style.sass'
 
 // Semi-smart component, if mapping state to props was made in UserPanel
 // it didn't work, so I've placed it here

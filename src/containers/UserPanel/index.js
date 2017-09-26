@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { postUser, fieldChanged, reset, getUser } from './actions'
-import UserCredentials from '../../components/UserCredentials/UserCredentials'
-import HolidaysTable from '../HolidaysTable/HolidaysTable'
-import SubmitButton from '../../components/SubmitButton/SubmitButton'
+import UserCredentials from '../../components/UserCredentials'
+import HolidaysTable from '../HolidaysTable'
+import SubmitButton from '../../components/SubmitButton'
 
 // User panel container
 // If no match parameters given, it works as an 'add new user'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DutyPicker from '../DutyPicker/DutyPicker'
-import styles from './DutyTableItem.sass'
+import DutyPicker from '../DutyPicker'
+import './style.sass'
 import remove from './remove-icon-black.png'
 
 class DutyTableItem extends Component {

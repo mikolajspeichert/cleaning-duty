@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './SubmitButton.sass'
+import './style.sass'
 
 class SubmitButton extends Component {
   render() {

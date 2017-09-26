@@ -14,19 +14,19 @@ module.exports = {
   },
 
   rules: {
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        js: "never",
-        jsx: "never",
-        mjs: "never",
-      },
-    ],
+    "import/extensions": "off",
+
+    "import/no-unresolved": "off",
 
     "import/no-extraneous-dependencies": "off",
 
     "import/prefer-default-export": "off",
+
+    "import/no-dynamic-require": "off",
+
+    "consistent-return": "off",
+
+    "vars-on-top": "off",
 
     "no-console": "off",
 
@@ -36,7 +36,7 @@ module.exports = {
 
     "no-restricted-syntax": "warn",
 
-    "no-param-reassign": "warn",
+    "no-param-reassign": "off",
 
     "no-underscore-dangle": ["error", { allow: ["_id"] }],
 
@@ -62,11 +62,15 @@ module.exports = {
 
     "no-unused-vars": ["error", { varsIgnorePattern: "styles" }],
 
+    "jsx-a11y/no-static-element-interactions": "off",
+
     "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
 
     "react/prefer-stateless-function": "off",
 
     "react/prop-types": "warn",
+
+    "react/forbid-prop-types": "off",
 
     eqeqeq: "warn",
 

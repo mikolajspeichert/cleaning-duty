@@ -1,6 +1,6 @@
 import React from 'react'
-import style from './Header.sass'
-import Navbar from '../../containers/Navbar/Navbar'
+import './style.sass'
+import Navbar from '../../containers/Navbar'
 
 class Header extends React.PureComponent {
   render() {

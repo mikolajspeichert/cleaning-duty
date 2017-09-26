@@ -1,11 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import configureStore from "./configureStore";
-import App from "./containers/App/App";
-import globalStyles from "./global.sass";
-const store = configureStore();
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import configureStore from './store'
+import App from './containers/App'
+import './global.sass'
+
+const store = configureStore()
 
 // Cleaning duty 0.1.0
 // Author: Mikolaj Speichert
@@ -16,5 +17,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)

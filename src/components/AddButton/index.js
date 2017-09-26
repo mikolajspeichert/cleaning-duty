@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './AddButton.sass'
+import './style.sass'
 
 class AddButton extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './HolidayItem.sass'
+import './style.sass'
 
 class DeleteItem extends React.PureComponent {
   render = () =>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './StatItem.sass'
+import './style.sass'
 
 class StatItem extends Component {
   toggleActive = () => {

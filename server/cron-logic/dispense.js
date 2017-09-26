@@ -12,7 +12,6 @@ const slackLoop = (slackuser, duties, bonus = 0) => {
   new CronJob( // eslint-disable-line no-new
     date,
     () => {
-      console.log('chuj')
       manager.getLastHistory(slackuser.id).then(duty => {
         console.log(duty)
         if (!duty.done && bonus <= 50) {
