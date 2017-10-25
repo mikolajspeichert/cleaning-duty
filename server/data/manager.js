@@ -28,6 +28,11 @@ const updateUser = (update, express) => {
   })
 }
 
+const compareDays = (date1, date2) =>
+  date1.getFullYear() === date2.getFullYear() &&
+  date1.getMonth() === date2.getMonth() &&
+  date1.getDate() === date2.getDate()
+
 exports.generateError = generateError
 exports.addUser = (body, express) => {
   if (body.id) updateUser(body, express)
@@ -94,10 +99,19 @@ exports.getStatistics = express => {
     models.duty.find({}, (_, duties) => {
       models.user.find({}, (_, users) => {
         for (let duty of duties) {
+          let lastDone = history.filter(
+            element =>
+              element.duty_id.toString() === duty._id.toString() &&
+              compareDays(element.date, new Date())
+          )[0]
           const wrapper = {
             duty: duty.name,
             users: [],
           }
+          if (lastDone.user_id)
+            wrapper.currently = users.filter(
+              el => el._id.toString() === lastDone.user_id.toString()
+            )[0].name
           for (let user of users) {
             wrapper.users.push({
               user: user.name,

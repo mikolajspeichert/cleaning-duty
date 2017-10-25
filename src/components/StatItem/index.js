@@ -20,7 +20,8 @@ class StatItem extends Component {
             {item.users.map(user =>
               <li key={user.user}>
                 <div className="user left">
-                  {user.user}
+                  {item.currently && item.currently === user.user
+                    ? user.user + '(working on it today!)' : user.user}
                 </div>
                 <div className="user right">
                   {user.quantity}

@@ -7,7 +7,7 @@ const mapStateToProps = () => {
   const navbarItems = {
     '/': 'Users',
     '/duties': 'Duties',
-    '/stats': 'Statistics',
+    '/stats': 'Stats',
     '/dates': 'Holidays',
   }
   return {
