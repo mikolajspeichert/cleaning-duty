@@ -108,7 +108,7 @@ exports.getStatistics = express => {
             duty: duty.name,
             users: [],
           }
-          if (lastDone.user_id)
+          if (lastDone)
             wrapper.currently = users.filter(
               el => el._id.toString() === lastDone.user_id.toString()
             )[0].name

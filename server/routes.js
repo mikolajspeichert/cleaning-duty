@@ -1,5 +1,5 @@
 const manager = require('./data/manager')
-// const dispense = require('./cron-logic/dispense')
+//const dispense = require('./cron-logic/dispense')
 
 module.exports = app => {
   // *************************************************
@@ -35,10 +35,10 @@ module.exports = app => {
 
   app.get('/api/stats', (req, res) => manager.getStatistics(res))
 
-  // app.get('/api/dispense', (req, res) => {
-  //   dispense()
-  //   res.send('cojestkurwa')
-  // })
+  //  app.get('/api/dispense', (req, res) => {
+  //    dispense()
+  //    res.send('cojestkurwa')
+  //  })
 
   app.get('/api/user/:id', (req, res) => {
     manager.getUser(req.params.id).then(user => {

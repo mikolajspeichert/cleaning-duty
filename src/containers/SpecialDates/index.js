@@ -9,14 +9,15 @@ class SpecialDates extends Component {
   render() {
     let { dates, newPick, handlePick } = this.props
     return (
-      <div className="dates-list">
-        {
-          // dates.map(date => {})
-        }
-        {!newPick && <SpecialDatePicker onPick={handlePick} />}
-        {/* {newPick === 1 && <AddSingleDay />} */}
-        {newPick === 2 && <AddHoliday />}
-      </div>
+      <div />
+      // <div className="dates-list">
+      //   {
+      //     // dates.map(date => {})
+      //   }
+      //   {!newPick && <SpecialDatePicker onPick={handlePick} />}
+      //   {/* {newPick === 1 && <AddSingleDay />} */}
+      //   {newPick === 2 && <AddHoliday />}
+      // </div>
     )
   }
 }
