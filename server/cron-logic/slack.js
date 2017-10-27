@@ -11,8 +11,8 @@ module.exports.morning = (channel, name, duties) => {
   }
 
   content +=
-    `\nYou feel like doing too much? Check it: \n` +
-    `http://node.thinksmart.pl:3000 (Only available from the thinksmart office wifi)`
+    `\nYou feel like doing too much? <http://node.thinksmart.pl:3000|Check it> \n` +
+    ` (Only available from the thinksmart office wifi)`
 
   slack.send({
     channel: `@${channel}`,
@@ -27,11 +27,11 @@ module.exports.afternoon = (channel, name, duties, id) => {
   for (const duty of duties) {
     content += `${duty.name} \n`
   }
-  content += `\nIf you want to change the hour of your notifications, go to: http://node.thinksmart.pl:3000/user/${id}`
+  content += `\nIf you want to change the hour of your notifications, <http://node.thinksmart.pl:3000/user/${id}|go here>`
   let attachments = [
     {
       fallback:
-        'If you want to stop the notifications, go to: http://node.thinksmart.pl:3000',
+        'If you want to stop the notifications, <http://node.thinksmart.pl:3000|go here>',
       title: 'I did it!',
       title_link: `http://node.thinksmart.pl:3000/api/done/${id}`,
     },
