@@ -9,7 +9,7 @@ class SpecialDates extends Component {
   render() {
     let { dates, newPick, handlePick } = this.props
     return (
-      <div />
+      <div>Someday will be done </div>
       // <div className="dates-list">
       //   {
       //     // dates.map(date => {})
